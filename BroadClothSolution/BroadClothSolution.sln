@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "BroadClothSolution", "BroadClothSolution\BroadClothSolution.dwproj", "{82A2E3EE-BAE7-4A7B-A0CB-F46E9C877AFE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Documents", "Solution Documents", "{A23EC023-7FA5-4E53-B2A2-23848DEAB7A8}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\DU YR 3\INFO 3300\Week 2\BISolutionWorksheets.xlsx = ..\..\..\DU YR 3\INFO 3300\Week 2\BISolutionWorksheets.xlsx
+		..\..\..\DU YR 3\INFO 3300\Week 2\InformationPackage.xlsx = ..\..\..\DU YR 3\INFO 3300\Week 2\InformationPackage.xlsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
