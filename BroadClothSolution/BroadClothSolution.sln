@@ -8,7 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Documents", "Solution Documents", "{A23EC023-7FA5-4E53-B2A2-23848DEAB7A8}"
 	ProjectSection(SolutionItems) = preProject
 		..\BISolutionWorksheets.xlsx = ..\BISolutionWorksheets.xlsx
-		..\InformationPackage.xlsx = ..\InformationPackage.xlsx
+		..\..\..\Users\Aleksandra\OneDrive\Documents\DU\2017-2018\Fall Quater\INFO\Broadcloth Solutions.docx = ..\..\..\Users\Aleksandra\OneDrive\Documents\DU\2017-2018\Fall Quater\INFO\Broadcloth Solutions.docx
+		..\InformationPackageWorksheet.xlsx = ..\InformationPackageWorksheet.xlsx
 	EndProjectSection
 EndProject
 Global
