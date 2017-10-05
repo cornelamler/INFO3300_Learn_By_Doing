@@ -7,8 +7,8 @@
 
 -- make the database if it doesn't exist yet (BTL is short for Biogene Technology Labs, which would be inefficient to type out each time a reference to db is made)
 IF NOT EXISTS(SELECT * FROM sys.databases
-	WHERE name = N'BTL_DB')
-	CREATE DATABASE BTL_DB
+	WHERE name = N'')
+	CREATE DATABASE 
 GO
 USE BTL_DB
 
@@ -87,62 +87,90 @@ IF EXISTS(
 	
 -- Now that the database is clean, create the tables(roots up, primary keys need to exist for foreign keys to reference them)
 
-CREATE TABLE PhaseCost
-	(PhaseCostID INT IDENTITY(1,1) CONSTRAINT pk_phasecost PRIMARY KEY,
-	PhaseBudget MONEY NOT NULL
+CREATE TABLE DimShipment
+	(Shipment_SK INT IDENTITY(1,1) CONSTRAINT pk_Shipment_SK PRIMARY KEY,
+	Shipment_AK INT,
+	Nation NVARCHAR (50),
+	[State] NVARCHAR(20),
+	City NVARCHAR(30),
+	ShippingCurrency NVARCHAR(5)
 	);
 
-CREATE TABLE CancerType
-	(CancerTypeID INT IDENTITY(1, 1) CONSTRAINT pk_cancertype PRIMARY KEY,
-	CancerName NVARCHAR(25) NOT NULL
+CREATE TABLE DimCompliance
+	(Compliance_SK INT IDENTITY(1, 1) CONSTRAINT pk_Compliance_SK PRIMARY KEY,
+	Compliance_AK INT,
+	ConditionCategory NVARCHAR(50),
+	OverallComplianceRating DECIMAL(18, 0),
+	Age DECIMAL(18, 0),
+	AgeDocuments NVARCHAR(20),
+	Gender NVARCHAR(7)
 	);
 
-CREATE TABLE Molecule
-	(MoleculeID INT IDENTITY(1, 1) CONSTRAINT pk_molecule PRIMARY KEY,
-	MoleculeName NVARCHAR(25) NOT NULL,
-	MoleculeDrugName NVARCHAR(25) 
+CREATE TABLE DimFactory
+	(Factory_SK INT IDENTITY(1, 1) CONSTRAINT pk_Factory_SK PRIMARY KEY,
+	Factory_AK INT,
+	Nation NVARCHAR(50),
+	[STATE] NVARCHAR(50),
+	City NVARCHAR(30),
+	GMTDifference DECIMAL(18, 0),
+	MaxWorkers INT,
+	BaseCurrency NVARCHAR(5)
 	);
 
-CREATE TABLE Department
-	(DepartmentID INT IDENTITY(1, 1) CONSTRAINT pk_department PRIMARY KEY,
-	DepartmentName NVARCHAR(60) NOT NULL,
-	DepartmentLeader NVARCHAR(50) NOT NULL
+CREATE TABLE DimItem
+	(Item_SK INT IDENTITY(1, 1) CONSTRAINT pk_Item_SK PRIMARY KEY,
+	Item_AK NVARCHAR(60) NOT NULL,
+	ModelDescription NVARCHAR(250) NOT NULL,
+	BasePrice DECIMAL(9, 4),
+	ListPrice DECIMAL(38,4),
+	Color NVARCHAR(20),
+	ItemSize DECIMAL(18, 0)
 	);
 
-CREATE TABLE SCIENTIST
-	(ScientistID INT IDENTITY(1, 1) CONSTRAINT pk_scientist PRIMARY KEY,
-	DepartmentID INT CONSTRAINT fk_department FOREIGN KEY REFERENCES Department(DepartmentID),
-	ScientistLastName NVARCHAR(20) NOT NULL,
-	ScientistFirstName NVARCHAR(20) NOT NULL,
-	ScientistDOB DATETIME NOT NULL,
-	ScientistHireDate DATETIME NOT NULL,
-	ScientistTitle NVARCHAR(40) NOT NULL
+CREATE TABLE DimOrder
+	(Order_SK INT IDENTITY(1, 1) CONSTRAINT pk_Order_SK PRIMARY KEY,
+	Order_AK INT,
+	DeliveryNation NVARCHAR(50),
+	DeliveryState NVARCHAR(20),
+	DeliveryCity NVARCHAR(30),
+	PriceAdjustment DECIMAL(38, 4),
+	Currency NVARCHAR(5)
+	);
 	
-	);
-
-CREATE TABLE SpendType
-	(SpendTypeID INT IDENTITY(0, 1) CONSTRAINT pk_spendtype PRIMARY KEY,
-	SpendType NVARCHAR(70)
-	)
-
-CREATE TABLE Study
-	(StudyID INT IDENTITY(1, 1) CONSTRAINT pk_study PRIMARY KEY,
-	ScientistID INT CONSTRAINT fk_scientist FOREIGN KEY REFERENCES Scientist(ScientistID),
-	MoleculeID INT CONSTRAINT fk_molecule FOREIGN KEY REFERENCES Molecule(MoleculeID),
-	StudyName NVARCHAR(50) NOT NULL,
-	StudyDescription NVARCHAR(256) NOT NULL,
-	StudyPhase INT CONSTRAINT fk_phasecost FOREIGN KEY REFERENCES PhaseCost(PhaseCostID),
-	StudyStartDate DATETIME NOT NULL,
-	StudyEndGoal NVARCHAR(256) NOT NULL,
-	CancerTypeID INT CONSTRAINT fk_cancertype FOREIGN KEY REFERENCES CancerType(CancertypeID)
-	);
-
-CREATE TABLE Spend
-	(SpendID INT IDENTITY(1, 1) CONSTRAINT pk_spend PRIMARY KEY,
-	StudyID INT CONSTRAINT fk_study FOREIGN KEY REFERENCES Study(StudyID),
-	SpendMonth DATETIME NOT NULL,
-	SpendAmount MONEY NOT NULL,
-	SpendTypeID INT CONSTRAINT fk_spendtype FOREIGN KEY REFERENCES SpendType(SpendTypeID)
+CREATE TABLE DimDate
+	(	
+		Date_SK INT PRIMARY KEY, 
+		Date DATETIME,
+		FullDate CHAR(10),-- Date in MM-dd-yyyy format
+		DayOfMonth INT, -- Field will hold day number of Month
+		DayName VARCHAR(9), -- Contains name of the day, Sunday, Monday 
+		DayOfWeek INT,-- First Day Sunday=1 and Saturday=7
+		DayOfWeekInMonth INT, -- 1st Monday or 2nd Monday in Month
+		DayOfWeekInYear INT,
+		DayOfQuarter INT,
+		DayOfYear INT,
+		WeekOfMonth INT,-- Week Number of Month 
+		WeekOfQuarter INT, -- Week Number of the Quarter
+		WeekOfYear INT,-- Week Number of the Year
+		Month INT, -- Number of the Month 1 to 12{}
+		MonthName VARCHAR(9),-- January, February etc
+		MonthOfQuarter INT,-- Month Number belongs to Quarter
+		Quarter CHAR(2),
+		QuarterName VARCHAR(9),-- First,Second..
+		Year INT,-- Year value of Date stored in Row
+		YearName CHAR(7), -- CY 2015,CY 2016
+		MonthYear CHAR(10), -- Jan-2016,Feb-2016
+		MMYYYY INT,
+		FirstDayOfMonth DATE,
+		LastDayOfMonth DATE,
+		FirstDayOfQuarter DATE,
+		LastDayOfQuarter DATE,
+		FirstDayOfYear DATE,
+		LastDayOfYear DATE,
+		IsHoliday BIT,-- Flag 1=National Holiday, 0-No National Holiday
+		IsWeekday BIT,-- 0=Week End ,1=Week Day
+		Holiday VARCHAR(50),--Name of Holiday in US
+		Season VARCHAR(10)--Name of Season
 	);
 	
 --fill(load) the tables (same order as creation)
