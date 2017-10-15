@@ -153,7 +153,6 @@ CREATE TABLE DimDate
 	CREATE TABLE FactBatch
 (QuantityProduced INT,
 QualityRating INT,
-StartDate INT,
 EstimatedEndTime INT,
 ActualEndTime INT,
 ShippingDate INT,

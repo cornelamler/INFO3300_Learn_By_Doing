@@ -5,16 +5,22 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Documents", "Solution Documents", "{A23EC023-7FA5-4E53-B2A2-23848DEAB7A8}"
 	ProjectSection(SolutionItems) = preProject
-		..\BISolutionWorksheets.xlsx = ..\BISolutionWorksheets.xlsx
-		..\Information Package.docx = ..\Information Package.docx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B5A00559-C660-4EC6-9FE9-39692275D3C0}"
-	ProjectSection(SolutionItems) = preProject
-		..\Star Schema.vsdx = ..\Star Schema.vsdx
+		Solution Documentation\BISolutionWorksheets.xlsx = Solution Documentation\BISolutionWorksheets.xlsx
+		Solution Documentation\Information Package.docx = Solution Documentation\Information Package.docx
+		Solution Documentation\Star Schema.vsdx = Solution Documentation\Star Schema.vsdx
 	EndProjectSection
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "BroadclothETL", "BroadclothETL\BroadclothETL.dtproj", "{295951E2-A106-4EA0-901D-A790EBBBE800}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build DW", "Build DW", "{00CC573E-1DCA-4CE2-AEB2-4E7428367753}"
+	ProjectSection(SolutionItems) = preProject
+		Build DW\BuildBroadclothDW.sql = Build DW\BuildBroadclothDW.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BroadclothDW ETL", "BroadclothDW ETL", "{2E7ABA24-8AA9-42C5-8D82-9937B84C680B}"
+	ProjectSection(SolutionItems) = preProject
+		Build DW\BroadclothDW ETL\BroadclothDW ETL Code.sql = Build DW\BroadclothDW ETL\BroadclothDW ETL Code.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,5 +32,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E7ABA24-8AA9-42C5-8D82-9937B84C680B} = {00CC573E-1DCA-4CE2-AEB2-4E7428367753}
 	EndGlobalSection
 EndGlobal
