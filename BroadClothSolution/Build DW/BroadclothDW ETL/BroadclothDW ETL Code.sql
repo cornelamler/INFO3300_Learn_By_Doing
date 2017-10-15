@@ -35,3 +35,14 @@ SELECT
 	MaxWorkers = CAST (MaxWorkers AS INT),
 	BaseCurrency = CAST (BaseCurrency AS NVARCHAR(5))
 FROM Broadcloth.dbo.Factory;
+
+SELECT
+	Item_AK = CAST(ItemID AS NVARCHAR(60)),
+	ModelDescription = CAST(ModelDescription AS NVARCHAR(250)),
+	BasePrice = CAST( BasePrice AS DECIMAL (9,4)),
+	ListPrice = CAST(ListPrice AS NUMERIC(38,4)),
+	Color = CAST( Color AS NVARCHAR (20)),
+	ItemSize = CAST( ItemSize AS NUMERIC(18,0))
+FROM Broadcloth.dbo.Model	
+INNER JOIN Broadcloth.dbo.Item
+	ON Model.ModelID = Item.ModelID;
