@@ -86,7 +86,6 @@ CREATE TABLE DimFactory
 	(Factory_SK INT IDENTITY(1, 1) CONSTRAINT pk_Factory_SK PRIMARY KEY,
 	Factory_AK INT,
 	Nation NVARCHAR(50),
-	[STATE] NVARCHAR(50),
 	City NVARCHAR(30),
 	GMTDifference DECIMAL(18, 0),
 	MaxWorkers INT,

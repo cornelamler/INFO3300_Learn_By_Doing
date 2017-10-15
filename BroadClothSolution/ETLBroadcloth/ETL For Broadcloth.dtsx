@@ -7,27 +7,16 @@
   DTS:CreatorName="UX32A\Sydney"
   DTS:DTSID="{1CA559EA-3078-4289-9618-7E4492569839}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.0500.272"
+  DTS:LastModifiedProductVersion="14.0.0800.90"
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL For Broadcloth"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{5CE18BF9-9C00-445E-A25E-06A15F8AD0AC}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{41C0B105-2AF0-41CE-99A9-6AE04BEDE4BF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\End ETL Process Sequence Container"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Sequence Container"
-      DTS:DTSID="{C68B7DD5-7C21-4147-9E56-9DE37C77B25D}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="End ETL Process Sequence Container">
-      <DTS:Variables />
-      <DTS:Executables />
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Fill Dimesion Tables Sequence Container"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -198,40 +187,29 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="172,42"
-          Id="Package\Prepare ETL Process Sequence Container\BroadclothDW Build"
-          TopLeft="61,18" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="331,113"
-          Size="331,156"
-          Id="Package\Prepare ETL Process Sequence Container"
-          TopLeft="251,33" />
-        <NodeLayout
-          Size="208,42"
-          Id="Package\Fill Dimesion Tables Sequence Container\DimFactory Data Flow Task"
-          TopLeft="19,7" />
-        <NodeLayout
-          Size="218,42"
-          Id="Package\Fill Dimesion Tables Sequence Container\DimShipment Data Flow Task"
-          TopLeft="20,112" />
-        <NodeLayout
           Size="227,42"
           Id="Package\Fill Dimesion Tables Sequence Container\DimComplience Data Flow Task"
           TopLeft="22,57" />
-        <NodeLayout
-          Size="195,42"
-          Id="Package\Fill Dimesion Tables Sequence Container\DimItem Data Flow Task"
-          TopLeft="26,163.5" />
         <NodeLayout
           Size="167,42"
           Id="Package\Fill Dimesion Tables Sequence Container\DimDate SQL Task"
           TopLeft="27,269" />
         <NodeLayout
+          Size="208,42"
+          Id="Package\Fill Dimesion Tables Sequence Container\DimFactory Data Flow Task"
+          TopLeft="19,7" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Fill Dimesion Tables Sequence Container\DimItem Data Flow Task"
+          TopLeft="26,163.5" />
+        <NodeLayout
           Size="200,42"
           Id="Package\Fill Dimesion Tables Sequence Container\DimOrder Data Flow Task"
           TopLeft="29,213.5" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Fill Dimesion Tables Sequence Container\DimShipment Data Flow Task"
+          TopLeft="20,112" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -239,13 +217,6 @@
           Size="326,470"
           Id="Package\Fill Dimesion Tables Sequence Container"
           TopLeft="255,216" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="320,255"
-          Size="320,298"
-          Id="Package\End ETL Process Sequence Container"
-          TopLeft="257.75,923.25" />
         <NodeLayout
           Size="201,42"
           Id="Package\Fill Fact Tables Sequence Containers\FactBatch Data Flow Task"
@@ -257,6 +228,17 @@
           Size="324,190"
           Id="Package\Fill Fact Tables Sequence Containers"
           TopLeft="256.916666666667,704.25" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Prepare ETL Process Sequence Container\BroadclothDW Build"
+          TopLeft="61,18" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="331,113"
+          Size="331,156"
+          Id="Package\Prepare ETL Process Sequence Container"
+          TopLeft="251,33" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

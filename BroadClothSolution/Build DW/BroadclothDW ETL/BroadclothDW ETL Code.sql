@@ -57,7 +57,7 @@ SELECT
 	Currency = CAST(OrderCurrency as NVARCHAR(5))
 FROM Broadcloth.dbo.CustomerOrder;
 
---Fact Table
+--FactBatch
 SELECT
 	Order_SK = DimOrder.Order_SK,
 	Compliance_SK = DimCompliance.Compliance_SK,
@@ -74,7 +74,8 @@ SELECT
 	ShippingCost = shipment.shipcost,
 	QuantityShipped = Shipmentitem.quantityshipped ,
 	OrderQuantity = Orderitem.orderquantity,
-	OrderSalePrice = orderitem.saleprice	
+	OrderSalePrice = orderitem.saleprice
+	
 FROM Broadcloth.dbo.productionbatch
 JOIN Broadcloth.dbo.orderitem
 	ON orderitem.orderID = productionbatch.orderID
@@ -83,27 +84,30 @@ JOIN Broadcloth.dbo.CustomerOrder
 	
 JOIN BroadclothDW.dbo.DimOrder
 	ON  orderitem.orderid = dimorder.order_AK
-JOIN broadclothdw.dbo.DimCompliance
-	on compliance.complianceID = dimcompliance.compliance_AK
+	
 JOIN broadcloth.dbo.factory
-	ON factory.factoryID = compliance.factoryID
+	ON factory.factoryID = productionbatch.factoryID
 JOIN broadclothdw.dbo.dimfactory
 	ON factory.factoryID = dimfactory.factory_AK
+JOIN Broadcloth.dbo.compliance
+	ON compliance.factoryid = factory.factoryID
+JOIN broadclothdw.dbo.DimCompliance
+	ON broadcloth.dbo.compliance.complianceID = dimcompliance.compliance_AK
 JOIN broadcloth.dbo.item
 	ON item.ItemID = productionbatch.ItemID
 JOIN Broadclothdw.dbo.DimItem
 	ON Item.ItemID = DimItem.item_AK
 JOIN Broadcloth.dbo.shipmentItem
-	ON customerorder.orderID = shipment.orderID
+	ON customerorder.orderID = shipmentitem.orderID
 JOIN Broadcloth.dbo.Shipment
 	ON shipment.shipmentID = ShipmentItem.ShipmentID
 JOIN BroadclothDW.dbo.DimShipment
-	ON shipment.shipmentID = Shipment.Shipment_AK
+	ON shipment.shipmentID = DimShipment.Shipment_AK
 JOIN BroadclothDW.dbo.DimDate AS DimDate
-	ON cast(productionbatch.startdatetime as DATE) = startdate
+	ON cast(productionbatch.startdatetime as DATE) = Dimdate.Date
 JOIN BroadclothDW.dbo.DimDate AS EETDW
-	ON cast(productionbatch.estimatedendTime as DATE) = EstimatedEndTime
+	ON cast(productionbatch.estendTime as DATE) = EETDW.Date
 JOIN BroadclothDW.dbo.DimDate AS AETDW
-	ON cast(productionbatch.ActualEndTime as DATE) =  ActualEndTime
-JOIN BroadclothDW.dbo.Dimdate AS ShippingDate
-	ON cast(shipment.ShipDate AS DATE) = ShippingDate;
+	ON cast(productionbatch.ActualEndTime as DATE) =  AETDW.Date
+JOIN BroadclothDW.dbo.Dimdate AS SDDW
+	ON cast(Shipment.ShipDate AS DATE) = SDDW.Date;
