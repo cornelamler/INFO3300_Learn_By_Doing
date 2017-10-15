@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Documents", "Solut
 		Solution Documentation\Star Schema.vsdx = Solution Documentation\Star Schema.vsdx
 	EndProjectSection
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "BroadclothETL", "BroadclothETL\BroadclothETL.dtproj", "{295951E2-A106-4EA0-901D-A790EBBBE800}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build DW", "Build DW", "{00CC573E-1DCA-4CE2-AEB2-4E7428367753}"
 	ProjectSection(SolutionItems) = preProject
 		Build DW\BuildBroadclothDW.sql = Build DW\BuildBroadclothDW.sql
@@ -22,13 +20,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BroadclothDW ETL", "Broadcl
 		Build DW\BroadclothDW ETL\BroadclothDW ETL Code.sql = Build DW\BroadclothDW ETL\BroadclothDW ETL Code.sql
 	EndProjectSection
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETLBroadcloth", "ETLBroadcloth\ETLBroadcloth.dtproj", "{0B9AAF65-462F-4B7C-B74B-E14AC5DD47CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{295951E2-A106-4EA0-901D-A790EBBBE800}.Development|Default.ActiveCfg = Development
-		{295951E2-A106-4EA0-901D-A790EBBBE800}.Development|Default.Build.0 = Development
+		{0B9AAF65-462F-4B7C-B74B-E14AC5DD47CD}.Development|Default.ActiveCfg = Development
+		{0B9AAF65-462F-4B7C-B74B-E14AC5DD47CD}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
