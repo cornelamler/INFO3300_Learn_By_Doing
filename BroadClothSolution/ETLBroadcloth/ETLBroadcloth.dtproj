@@ -26,26 +26,26 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">UX32A</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4bpmQdqwFEG9PEoQ2Mc2zAAAAAACAAAAAAAQZgAAAAEAACAAAACrRslilxAhhNSRjSiCmKUzi+Xn3HqxaR1IMUjg0UAboQAAAAAOgAAAAAIAACAAAABlKFJK0NxzzZ+vX8sAmvybexgcjwm6T4dZGjspUUGli5AAAABtm360ErjFU7zpUUMSxXzlTnE16LUVlDwYBgn8MjwmfVPWpDKryMzN4z6iwHrbsXxMftE1vOui6mBDAnSCFn94wV9ah4e2EprgVH1FLJQwydBsTTWtAUdhKG0Jh/rhexym5MqiUI5bLFswDosrV/JD0iir9V49RIJ8P1EfStaVF6MkKcGlPSc3D+y4b9FZdk1AAAAASdbGJgyc6ivTs+Iwa3avlbXC8IGnCIQfcER0yTBmCW3kc8MCcRMXo+ok6SFjfUNRmzFapPM6qmsXZKNv8/PTJA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4bpmQdqwFEG9PEoQ2Mc2zAAAAAACAAAAAAAQZgAAAAEAACAAAAB11TSOfKjFZxPTrqt4Ff+BV0MgQJFNYHo7M75KKYTAfQAAAAAOgAAAAAIAACAAAABB/zy2nBxaIPzmTN5WEx1aUO0P1z2pCCUdH0R0vecNOJAAAAD8WNecVZ9AimpBlIUq16eQne8NewwfH5PZGeSejA7ozcAV/xTplrxT2wPhLZjOGCT+v8698NJ/b9l6ZHM/VAw4KGSBI5GVdlaHSyRSsSkju0+xRdnatEFSsWuqrh1+OTeRz2iCOozh/XonOg1ahX0n2eNPMs4+3xlAGFnnaGOhgUW+V8QVpwt8/qHUv/vcYtFAAAAA24R4hGDK9SDg+scs2C8R3Q6963FYob+8u7DsqOm3MA+PDXl8Nv2+udMNi0Bfa3L2dXRtYmmpBdGgtpi0KFA39A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="ETL For Broadcloth.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="ETL For Broadcloth.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{FE68271B-3C29-4B2E-B020-B82D16CFF0BD}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{1CA559EA-3078-4289-9618-7E4492569839}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">ETL For Broadcloth</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D93C7E75-3D0E-4803-810B-D13ED8DA5D3D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F18D552E-C036-4614-B685-00C608DBC0E4}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
