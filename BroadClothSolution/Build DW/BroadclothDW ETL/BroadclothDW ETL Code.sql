@@ -46,3 +46,64 @@ SELECT
 FROM Broadcloth.dbo.Item
 INNER JOIN Broadcloth.dbo.Model
 ON Item.ItemID = Model.ItemID;
+
+--DimOrder
+SELECT
+	OrderAK = CAST(Order.OrderID as INT),
+	DeliveryNation = CAST(DeliveryNation as NVARCHAR(50)),
+	DeliveryState = CAST(DeliveryState as NVARCHAR(50)),
+	DeliveryCity = CAST(DeliveryCity as NVARCHAR(50)),
+	PriceAdjustment = CAST(PriceAdjustment as Decimal(38, 4),
+	Currency = CAST(OrderCurrency as NVARCHAR(5))
+FROM Broadcloth.dbo.CustomerOrder;
+
+--Fact Table
+SELECT
+	Order_SK = DimOrder.Order_SK,
+	Compliance_SK = DimCompliance.Compliance_SK,
+	Factory_SK = DimFactory.Factory_SK,
+	Item_SK = DimItem.Item_SK,
+	Shipment_SK = DimShipment.Shipment_SK,
+	StartDate = DimDate.Date_SK,
+	EstimatedEndTime= EETDW.date_SK,
+	ActualEndTime = AETDW.date_SK,
+	ShippingDate = SDDW.date_SK,
+	QuantityProduced = Productionbatch.quantityproduced,
+	QualityRating = Productionbatch.qualityrating,
+	ProductionCost = broadcloth.dbo.productionbatch.productioncost,
+	ShippingCost = shipment.shipcost,
+	QuantityShipped = Shipmentitem.quantityshipped ,
+	OrderQuantity = Orderitem.orderquantity,
+	OrderSalePrice = orderitem.saleprice	
+FROM Broadcloth.dbo.productionbatch
+JOIN Broadcloth.dbo.orderitem
+	ON orderitem.orderID = productionbatch.orderID
+JOIN Broadcloth.dbo.CustomerOrder
+	ON customerorder.orderID = orderitem.orderID
+	
+JOIN BroadclothDW.dbo.DimOrder
+	ON  orderitem.orderid = dimorder.order_AK
+JOIN broadclothdw.dbo.DimCompliance
+	on compliance.complianceID = dimcompliance.compliance_AK
+JOIN broadcloth.dbo.factory
+	ON factory.factoryID = compliance.factoryID
+JOIN broadclothdw.dbo.dimfactory
+	ON factory.factoryID = dimfactory.factory_AK
+JOIN broadcloth.dbo.item
+	ON item.ItemID = productionbatch.ItemID
+JOIN Broadclothdw.dbo.DimItem
+	ON Item.ItemID = DimItem.item_AK
+JOIN Broadcloth.dbo.shipmentItem
+	ON customerorder.orderID = shipment.orderID
+JOIN Broadcloth.dbo.Shipment
+	ON shipment.shipmentID = ShipmentItem.ShipmentID
+JOIN BroadclothDW.dbo.DimShipment
+	ON shipment.shipmentID = Shipment.Shipment_AK
+JOIN BroadclothDW.dbo.DimDate AS DimDate
+	ON cast(productionbatch.startdatetime as DATE) = startdate
+JOIN BroadclothDW.dbo.DimDate AS EETDW
+	ON cast(productionbatch.estimatedendTime as DATE) = EstimatedEndTime
+JOIN BroadclothDW.dbo.DimDate AS AETDW
+	ON cast(productionbatch.ActualEndTime as DATE) =  ActualEndTime
+JOIN BroadclothDW.dbo.Dimdate AS ShippingDate
+	ON cast(shipment.ShipDate AS DATE) = ShippingDate;
