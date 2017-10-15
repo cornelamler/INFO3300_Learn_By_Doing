@@ -78,11 +78,11 @@ CREATE TABLE DimShipment
 CREATE TABLE DimCompliance
 	(Compliance_SK INT IDENTITY(1, 1) CONSTRAINT pk_Compliance_SK PRIMARY KEY,
 	Compliance_AK INT,
-	ConditionCategory NVARCHAR(50),
+	--ConditionCategory NVARCHAR(50),
 	OverallComplianceRating DECIMAL(18, 0),
-	Age DECIMAL(18, 0),
-	AgeDocuments NVARCHAR(20),
-	Gender NVARCHAR(7)
+	AverageAge DECIMAL(18, 0),
+	--AgeDocuments NVARCHAR(20),
+	PercentFemale DECIMAL(9,6)
 	);
 
 CREATE TABLE DimFactory
