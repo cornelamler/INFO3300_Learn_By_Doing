@@ -114,7 +114,7 @@ CREATE TABLE DimOrder
 	
 CREATE TABLE DimDate
 	(	
-		StartDate INT PRIMARY KEY, 
+		Date_SK INT PRIMARY KEY, 
 		Date DATETIME,
 		FullDate CHAR(10),-- Date in MM-dd-yyyy format
 		DayOfMonth INT, -- Field will hold day number of Month
@@ -165,6 +165,6 @@ Compliance_SK INT NOT NULL CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES Di
 Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),
 Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),
 Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),
-StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(StartDate),
+StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),
 CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Compliance_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)
 );
