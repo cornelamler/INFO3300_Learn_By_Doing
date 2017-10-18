@@ -149,22 +149,22 @@ CREATE TABLE DimDate
 	);
 
 
-	CREATE TABLE FactBatch
-(QuantityProduced INT,
-QualityRating INT,
-EstimatedEndTime INT,
-ActualEndTime INT,
-ShippingDate INT,
-ProoductionCost INT,
-ShippingCost INT,
-QuantityShipped INT,
-OrderQuantity INT,
-OrderSalePrice INT,
-Order_SK INT NOT NULL CONSTRAINT Fk_Order_SK FOREIGN KEY REFERENCES DimOrder(Order_SK),
-Compliance_SK INT NOT NULL CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES DimCompliance(Compliance_SK),
-Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),
-Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),
-Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),
-StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),
-CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Compliance_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)
-);
+CREATE TABLE FactBatch
+	(QuantityProduced INT,
+	QualityRating INT,
+	EstimatedEndTime INT,
+	ActualEndTime INT,
+	ShippingDate INT,
+	ProductionCost DECIMAL(38,4),
+	ShippingCost INT,
+	QuantityShipped INT,
+	OrderQuantity INT,
+	OrderSalePrice INT,
+	Order_SK INT NOT NULL CONSTRAINT Fk_Order_SK FOREIGN KEY REFERENCES DimOrder(Order_SK),
+	Compliance_SK INT CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES DimCompliance(Compliance_SK),
+	Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),
+	Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),
+	Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),
+	StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),
+	CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)
+	);

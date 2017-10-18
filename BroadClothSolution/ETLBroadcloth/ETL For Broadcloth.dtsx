@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL For Broadcloth"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{94F0687C-269D-4935-A436-8C8DE8BCB4B4}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{FE6DF808-6A5C-4A6C-AF81-7B2598270EAE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,34 +39,6 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Fill Fact Tables Sequence Containers"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Sequence Container"
-      DTS:Disabled="True"
-      DTS:DTSID="{513ADAA1-F9DA-42C7-9FA7-412D2F206AC2}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Fill Fact Tables Sequence Containers">
-      <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Fill Fact Tables Sequence Containers\FactBatch Data Flow Task"
-          DTS:CreationName="Microsoft.Pipeline"
-          DTS:Description="Data Flow Task"
-          DTS:DTSID="{8A45E4B7-857B-46AF-ACBC-B84A52217BCD}"
-          DTS:ExecutableType="Microsoft.Pipeline"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="FactBatch Data Flow Task"
-          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <pipeline
-              version="1" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-      </DTS:Executables>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load Dimension Tables"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -2166,6 +2138,795 @@ FROM Broadcloth.dbo.Shipment;</property>
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Load Fact Table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{513ADAA1-F9DA-42C7-9FA7-412D2F206AC2}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Fact Table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Fact Table\FactBatch Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8A45E4B7-857B-46AF-ACBC-B84A52217BCD}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="FactBatch Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[FactBatch]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.BroadclothDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.BroadclothDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Order_SK]"
+                          cachedDataType="i4"
+                          cachedName="Order_SK"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Order_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Order_SK]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Compliance_SK]"
+                          cachedDataType="i4"
+                          cachedName="Compliance_SK"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Compliance_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Compliance_SK]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Factory_SK]"
+                          cachedDataType="i4"
+                          cachedName="Factory_SK"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Factory_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Factory_SK]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Item_SK]"
+                          cachedDataType="i4"
+                          cachedName="Item_SK"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Item_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item_SK]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Shipment_SK]"
+                          cachedDataType="i4"
+                          cachedName="Shipment_SK"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Shipment_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Shipment_SK]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StartDate]"
+                          cachedDataType="i4"
+                          cachedName="StartDate"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartDate]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EstimatedEndTime]"
+                          cachedDataType="i4"
+                          cachedName="EstimatedEndTime"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstimatedEndTime]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstimatedEndTime]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ActualEndTime]"
+                          cachedDataType="i4"
+                          cachedName="ActualEndTime"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualEndTime]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualEndTime]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShippingDate]"
+                          cachedDataType="i4"
+                          cachedName="ShippingDate"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingDate]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingDate]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QuantityProduced]"
+                          cachedDataType="i4"
+                          cachedName="QuantityProduced"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuantityProduced]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuantityProduced]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QualityRating]"
+                          cachedDataType="numeric"
+                          cachedName="QualityRating"
+                          cachedPrecision="18"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QualityRating]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QualityRating]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShippingCost]"
+                          cachedDataType="numeric"
+                          cachedName="ShippingCost"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCost]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCost]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QuantityShipped]"
+                          cachedDataType="i4"
+                          cachedName="QuantityShipped"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuantityShipped]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuantityShipped]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrderQuantity]"
+                          cachedDataType="i4"
+                          cachedName="OrderQuantity"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderQuantity]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderQuantity]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrderSalePrice]"
+                          cachedDataType="numeric"
+                          cachedName="OrderSalePrice"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderSalePrice]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderSalePrice]" />
+                        <inputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductionCost]"
+                          cachedDataType="numeric"
+                          cachedName="ProductionCost"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductionCost]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductionCost]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuantityProduced]"
+                          dataType="i4"
+                          name="QuantityProduced" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QualityRating]"
+                          dataType="i4"
+                          name="QualityRating" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstimatedEndTime]"
+                          dataType="i4"
+                          name="EstimatedEndTime" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualEndTime]"
+                          dataType="i4"
+                          name="ActualEndTime" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingDate]"
+                          dataType="i4"
+                          name="ShippingDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCost]"
+                          dataType="i4"
+                          name="ShippingCost" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuantityShipped]"
+                          dataType="i4"
+                          name="QuantityShipped" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderQuantity]"
+                          dataType="i4"
+                          name="OrderQuantity" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderSalePrice]"
+                          dataType="i4"
+                          name="OrderSalePrice" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Order_SK]"
+                          dataType="i4"
+                          name="Order_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Compliance_SK]"
+                          dataType="i4"
+                          name="Compliance_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Factory_SK]"
+                          dataType="i4"
+                          name="Factory_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Item_SK]"
+                          dataType="i4"
+                          name="Item_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Shipment_SK]"
+                          dataType="i4"
+                          name="Shipment_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                          dataType="i4"
+                          name="StartDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductionCost]"
+                          dataType="numeric"
+                          name="ProductionCost"
+                          precision="38"
+                          scale="4" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">--FactBatch
+SELECT
+	--keys
+	Order_SK = DimOrder.Order_SK,
+	Compliance_SK = DimCompliance.Compliance_SK,
+	Factory_SK = DimFactory.Factory_SK,
+	Item_SK = DimItem.Item_SK,
+	Shipment_SK = DimShipment.Shipment_SK,
+	StartDate = DimDate.Date_SK,
+	EstimatedEndTime= EETDW.Date_SK,
+	ActualEndTime = AETDW.Date_SK,
+	ShippingDate = SDDW.Date_SK,
+
+	--measures
+	QuantityProduced = Productionbatch.quantityproduced,
+	QualityRating = Productionbatch.qualityrating,
+	ProductionCost = CAST(ProductionBatch.ProductionCost AS DECIMAL(38,4)),
+	ShippingCost = Shipment.ShipCost,
+	QuantityShipped = ShipmentItem.QuantityShipped,
+	OrderQuantity = SUM(OrderItem.OrderQuantity),
+	OrderSalePrice = AVG(OrderItem.SalePrice)
+	
+FROM Broadcloth.dbo.ProductionBatch
+INNER JOIN Broadcloth.dbo.OrderItem
+	ON OrderItem.OrderID = ProductionBatch.OrderID
+
+--Order Joins
+INNER JOIN CustomerOrder
+	ON CustomerOrder.OrderID = ProductionBatch.OrderID
+JOIN BroadclothDW.dbo.DimOrder
+	ON  CustomerOrder.OrderID = DimOrder.Order_AK
+
+--Factory Joins
+JOIN Broadcloth.dbo.Factory
+	ON Factory.FactoryID = ProductionBatch.FactoryID
+JOIN BroadclothDW.dbo.DimFactory
+	ON Factory.FactoryID = DimFactory.Factory_AK
+
+--Compliance Joins
+LEFT OUTER JOIN Broadcloth.dbo.compliance
+	ON Compliance.FactoryID = Factory.FactoryID
+LEFT OUTER JOIN broadclothdw.dbo.DimCompliance
+	ON Compliance.ComplianceID = DimCompliance.Compliance_AK
+
+--Item Joins
+JOIN Broadcloth.dbo.Item 
+	ON Item.ItemID = ProductionBatch.ItemID
+JOIN Broadclothdw.dbo.DimItem
+	ON ProductionBatch.ItemID = DimItem.Item_AK
+
+--Shipment Join
+INNER JOIN ShipmentItem
+	ON Item.ItemID = ShipmentItem.ItemID
+INNER JOIN Shipment
+	ON Shipment.ShipmentID = ShipmentItem.ShipmentID
+JOIN BroadclothDW.dbo.DimShipment
+	ON Shipment.ShipmentID = DimShipment.Shipment_AK
+
+--Date Join
+JOIN BroadclothDW.dbo.DimDate AS DimDate
+	ON CAST(ProductionBatch.StartDateTime as DATE) = Dimdate.Date
+JOIN BroadclothDW.dbo.DimDate AS EETDW
+	ON CAST(ProductionBatch.EstEndTime as DATE) = EETDW.Date
+JOIN BroadclothDW.dbo.DimDate AS AETDW
+	ON CAST(productionbatch.ActualEndTime as DATE) =  AETDW.Date
+JOIN BroadclothDW.dbo.Dimdate AS SDDW
+	ON CAST(Shipment.ShipDate AS DATE) = SDDW.Date
+	
+GROUP BY 
+	DimOrder.Order_SK,
+	DimCompliance.Compliance_SK,
+	DimFactory.Factory_SK,
+	DimItem.Item_SK,
+	DimShipment.Shipment_SK,
+	DimDate.Date_SK,
+	EETDW.Date_SK,
+	AETDW.Date_SK,
+	SDDW.Date_SK,
+	Productionbatch.quantityproduced,
+	Productionbatch.qualityrating,
+	CAST(ProductionBatch.ProductionCost AS DECIMAL(38,4)),
+	Shipment.ShipCost,
+	Shipmentitem.QuantityShipped
+ORDER BY Shipment_SK;</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.Broadcloth]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.Broadcloth]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Order_SK]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Order_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Order_SK]"
+                          name="Order_SK"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Compliance_SK]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Compliance_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Compliance_SK]"
+                          name="Compliance_SK"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Factory_SK]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Factory_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Factory_SK]"
+                          name="Factory_SK"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item_SK]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Item_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item_SK]"
+                          name="Item_SK"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Shipment_SK]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Shipment_SK]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Shipment_SK]"
+                          name="Shipment_SK"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartDate]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartDate]"
+                          name="StartDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstimatedEndTime]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstimatedEndTime]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstimatedEndTime]"
+                          name="EstimatedEndTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualEndTime]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualEndTime]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualEndTime]"
+                          name="ActualEndTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingDate]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShippingDate]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingDate]"
+                          name="ShippingDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuantityProduced]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QuantityProduced]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuantityProduced]"
+                          name="QuantityProduced"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QualityRating]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QualityRating]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QualityRating]"
+                          name="QualityRating"
+                          precision="18"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductionCost]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductionCost]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductionCost]"
+                          name="ProductionCost"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCost]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShippingCost]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCost]"
+                          name="ShippingCost"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuantityShipped]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QuantityShipped]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuantityShipped]"
+                          name="QuantityShipped"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderQuantity]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderQuantity]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderQuantity]"
+                          name="OrderQuantity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderSalePrice]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderSalePrice]"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderSalePrice]"
+                          name="OrderSalePrice"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Order_SK]"
+                          dataType="i4"
+                          name="Order_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Compliance_SK]"
+                          dataType="i4"
+                          name="Compliance_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Factory_SK]"
+                          dataType="i4"
+                          name="Factory_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Item_SK]"
+                          dataType="i4"
+                          name="Item_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Shipment_SK]"
+                          dataType="i4"
+                          name="Shipment_SK" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                          dataType="i4"
+                          name="StartDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstimatedEndTime]"
+                          dataType="i4"
+                          name="EstimatedEndTime" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualEndTime]"
+                          dataType="i4"
+                          name="ActualEndTime" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShippingDate]"
+                          dataType="i4"
+                          name="ShippingDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QuantityProduced]"
+                          dataType="i4"
+                          name="QuantityProduced" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QualityRating]"
+                          dataType="numeric"
+                          name="QualityRating"
+                          precision="18" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductionCost]"
+                          dataType="numeric"
+                          name="ProductionCost"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShippingCost]"
+                          dataType="numeric"
+                          name="ShippingCost"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QuantityShipped]"
+                          dataType="i4"
+                          name="QuantityShipped" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderQuantity]"
+                          dataType="i4"
+                          name="OrderQuantity" />
+                        <externalMetadataColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderSalePrice]"
+                          dataType="numeric"
+                          name="OrderSalePrice"
+                          precision="38"
+                          scale="6" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Order_SK]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Order_SK]"
+                          name="Order_SK" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Compliance_SK]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Compliance_SK]"
+                          name="Compliance_SK" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Factory_SK]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Factory_SK]"
+                          name="Factory_SK" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Item_SK]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Item_SK]"
+                          name="Item_SK" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Shipment_SK]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Shipment_SK]"
+                          name="Shipment_SK" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                          name="StartDate" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstimatedEndTime]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstimatedEndTime]"
+                          name="EstimatedEndTime" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualEndTime]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualEndTime]"
+                          name="ActualEndTime" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShippingDate]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShippingDate]"
+                          name="ShippingDate" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QuantityProduced]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QuantityProduced]"
+                          name="QuantityProduced" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QualityRating]"
+                          dataType="numeric"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QualityRating]"
+                          name="QualityRating"
+                          precision="18" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductionCost]"
+                          dataType="numeric"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductionCost]"
+                          name="ProductionCost"
+                          precision="38"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShippingCost]"
+                          dataType="numeric"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShippingCost]"
+                          name="ShippingCost"
+                          precision="38"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QuantityShipped]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QuantityShipped]"
+                          name="QuantityShipped" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderQuantity]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderQuantity]"
+                          name="OrderQuantity" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderSalePrice]"
+                          dataType="numeric"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderSalePrice]"
+                          name="OrderSalePrice"
+                          precision="38"
+                          scale="6" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Fact Table\FactBatch Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Prepare ETL Process"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
@@ -2189,7 +2950,7 @@ FROM Broadcloth.dbo.Shipment;</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{8A713B2C-F044-436A-B642-D0CEFE7945F4}"
-              SQLTask:SqlStatementSource="--Created by Raleigh, Sydney, Aleksandra, and Cornel&#xA;--Version 1&#xA;--Build Broadcloth Production Batch Data Mart&#xA;--Created October 5th, 2017&#xA;&#xA;use master&#xA;--Creating the Data Warehouse&#xA;IF NOT EXISTS(SELECT * FROM sys.databases  --only adds if it doesn't exist&#xA;&#x9;WHERE name = N'BroadclothDW')&#xA;&#x9;CREATE DATABASE BroadclothDW&#xA;GO&#xA;USE BroadclothDW&#xA;GO&#xA;&#xA;--Checking for Existing Tables&#xA;IF EXISTS( --removes a table if it exists&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'FactBatch'&#xA;&#x9;)&#xA;&#x9;DROP TABLE FactBatch;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimDate'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimDate;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimShipment'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimShipment;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimCompliance'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimCompliance;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimOrder'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimOrder;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimItem'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimItem;&#xA;&#xA;&#x9;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimFactory'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimFactory;&#xA;&#x9;&#xA;CREATE TABLE DimShipment&#xA;&#x9;(Shipment_SK INT IDENTITY(1,1) CONSTRAINT pk_Shipment_SK PRIMARY KEY,&#xA;&#x9;Shipment_AK INT,&#xA;&#x9;Nation NVARCHAR (50),&#xA;&#x9;[State] NVARCHAR(20),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;ShippingCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimCompliance&#xA;&#x9;(Compliance_SK INT IDENTITY(1, 1) CONSTRAINT pk_Compliance_SK PRIMARY KEY,&#xA;&#x9;Compliance_AK INT,&#xA;&#x9;--ConditionCategory NVARCHAR(50),&#xA;&#x9;OverallComplianceRating DECIMAL(18, 0),&#xA;&#x9;AverageAge DECIMAL(18, 0),&#xA;&#x9;--AgeDocuments NVARCHAR(20),&#xA;&#x9;PercentFemale DECIMAL(9,6)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimFactory&#xA;&#x9;(Factory_SK INT IDENTITY(1, 1) CONSTRAINT pk_Factory_SK PRIMARY KEY,&#xA;&#x9;Factory_AK INT,&#xA;&#x9;Nation NVARCHAR(50),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;GMTDifference DECIMAL(18, 0),&#xA;&#x9;MaxWorkers INT,&#xA;&#x9;BaseCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimItem&#xA;&#x9;(Item_SK INT IDENTITY(1, 1) CONSTRAINT pk_Item_SK PRIMARY KEY,&#xA;&#x9;Item_AK NVARCHAR(60) NOT NULL,&#xA;&#x9;ModelDescription NVARCHAR(250) NOT NULL,&#xA;&#x9;BasePrice DECIMAL(9, 4),&#xA;&#x9;ListPrice DECIMAL(38,4),&#xA;&#x9;Color NVARCHAR(20),&#xA;&#x9;ItemSize DECIMAL(18, 0)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimOrder&#xA;&#x9;(Order_SK INT IDENTITY(1, 1) CONSTRAINT pk_Order_SK PRIMARY KEY,&#xA;&#x9;Order_AK INT,&#xA;&#x9;DeliveryNation NVARCHAR(50),&#xA;&#x9;DeliveryState NVARCHAR(20),&#xA;&#x9;DeliveryCity NVARCHAR(30),&#xA;&#x9;PriceAdjustment DECIMAL(38, 4),&#xA;&#x9;Currency NVARCHAR(5)&#xA;&#x9;);&#xA;&#x9;&#xA;CREATE TABLE DimDate&#xA;&#x9;(&#x9;&#xA;&#x9;&#x9;Date_SK INT PRIMARY KEY, &#xA;&#x9;&#x9;Date DATETIME,&#xA;&#x9;&#x9;FullDate CHAR(10),-- Date in MM-dd-yyyy format&#xA;&#x9;&#x9;DayOfMonth INT, -- Field will hold day number of Month&#xA;&#x9;&#x9;DayName VARCHAR(9), -- Contains name of the day, Sunday, Monday &#xA;&#x9;&#x9;DayOfWeek INT,-- First Day Sunday=1 and Saturday=7&#xA;&#x9;&#x9;DayOfWeekInMonth INT, -- 1st Monday or 2nd Monday in Month&#xA;&#x9;&#x9;DayOfWeekInYear INT,&#xA;&#x9;&#x9;DayOfQuarter INT,&#xA;&#x9;&#x9;DayOfYear INT,&#xA;&#x9;&#x9;WeekOfMonth INT,-- Week Number of Month &#xA;&#x9;&#x9;WeekOfQuarter INT, -- Week Number of the Quarter&#xA;&#x9;&#x9;WeekOfYear INT,-- Week Number of the Year&#xA;&#x9;&#x9;Month INT, -- Number of the Month 1 to 12{}&#xA;&#x9;&#x9;MonthName VARCHAR(9),-- January, February etc&#xA;&#x9;&#x9;MonthOfQuarter INT,-- Month Number belongs to Quarter&#xA;&#x9;&#x9;Quarter CHAR(2),&#xA;&#x9;&#x9;QuarterName VARCHAR(9),-- First,Second..&#xA;&#x9;&#x9;Year INT,-- Year value of Date stored in Row&#xA;&#x9;&#x9;YearName CHAR(7), -- CY 2015,CY 2016&#xA;&#x9;&#x9;MonthYear CHAR(10), -- Jan-2016,Feb-2016&#xA;&#x9;&#x9;MMYYYY INT,&#xA;&#x9;&#x9;FirstDayOfMonth DATE,&#xA;&#x9;&#x9;LastDayOfMonth DATE,&#xA;&#x9;&#x9;FirstDayOfQuarter DATE,&#xA;&#x9;&#x9;LastDayOfQuarter DATE,&#xA;&#x9;&#x9;FirstDayOfYear DATE,&#xA;&#x9;&#x9;LastDayOfYear DATE,&#xA;&#x9;&#x9;IsHoliday BIT,-- Flag 1=National Holiday, 0-No National Holiday&#xA;&#x9;&#x9;IsWeekday BIT,-- 0=Week End ,1=Week Day&#xA;&#x9;&#x9;Holiday VARCHAR(50),--Name of Holiday in US&#xA;&#x9;&#x9;Season VARCHAR(10)--Name of Season&#xA;&#x9;);&#xA;&#xA;&#xA;&#x9;CREATE TABLE FactBatch&#xA;(QuantityProduced INT,&#xA;QualityRating INT,&#xA;EstimatedEndTime INT,&#xA;ActualEndTime INT,&#xA;ShippingDate INT,&#xA;ProoductionCost INT,&#xA;ShippingCost INT,&#xA;QuantityShipped INT,&#xA;OrderQuantity INT,&#xA;OrderSalePrice INT,&#xA;Order_SK INT NOT NULL CONSTRAINT Fk_Order_SK FOREIGN KEY REFERENCES DimOrder(Order_SK),&#xA;Compliance_SK INT NOT NULL CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES DimCompliance(Compliance_SK),&#xA;Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),&#xA;Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),&#xA;Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),&#xA;StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),&#xA;CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Compliance_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="--Created by Raleigh, Sydney, Aleksandra, and Cornel&#xA;--Version 1&#xA;--Build Broadcloth Production Batch Data Mart&#xA;--Created October 5th, 2017&#xA;&#xA;use master&#xA;--Creating the Data Warehouse&#xA;IF NOT EXISTS(SELECT * FROM sys.databases  --only adds if it doesn't exist&#xA;&#x9;WHERE name = N'BroadclothDW')&#xA;&#x9;CREATE DATABASE BroadclothDW&#xA;GO&#xA;USE BroadclothDW&#xA;GO&#xA;&#xA;--Checking for Existing Tables&#xA;IF EXISTS( --removes a table if it exists&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'FactBatch'&#xA;&#x9;)&#xA;&#x9;DROP TABLE FactBatch;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimDate'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimDate;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimShipment'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimShipment;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimCompliance'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimCompliance;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimOrder'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimOrder;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimItem'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimItem;&#xA;&#xA;&#x9;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimFactory'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimFactory;&#xA;&#x9;&#xA;CREATE TABLE DimShipment&#xA;&#x9;(Shipment_SK INT IDENTITY(1,1) CONSTRAINT pk_Shipment_SK PRIMARY KEY,&#xA;&#x9;Shipment_AK INT,&#xA;&#x9;Nation NVARCHAR (50),&#xA;&#x9;[State] NVARCHAR(20),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;ShippingCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimCompliance&#xA;&#x9;(Compliance_SK INT IDENTITY(1, 1) CONSTRAINT pk_Compliance_SK PRIMARY KEY,&#xA;&#x9;Compliance_AK INT,&#xA;&#x9;--ConditionCategory NVARCHAR(50),&#xA;&#x9;OverallComplianceRating DECIMAL(18, 0),&#xA;&#x9;AverageAge DECIMAL(18, 0),&#xA;&#x9;--AgeDocuments NVARCHAR(20),&#xA;&#x9;PercentFemale DECIMAL(9,6)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimFactory&#xA;&#x9;(Factory_SK INT IDENTITY(1, 1) CONSTRAINT pk_Factory_SK PRIMARY KEY,&#xA;&#x9;Factory_AK INT,&#xA;&#x9;Nation NVARCHAR(50),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;GMTDifference DECIMAL(18, 0),&#xA;&#x9;MaxWorkers INT,&#xA;&#x9;BaseCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimItem&#xA;&#x9;(Item_SK INT IDENTITY(1, 1) CONSTRAINT pk_Item_SK PRIMARY KEY,&#xA;&#x9;Item_AK NVARCHAR(60) NOT NULL,&#xA;&#x9;ModelDescription NVARCHAR(250) NOT NULL,&#xA;&#x9;BasePrice DECIMAL(9, 4),&#xA;&#x9;ListPrice DECIMAL(38,4),&#xA;&#x9;Color NVARCHAR(20),&#xA;&#x9;ItemSize DECIMAL(18, 0)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimOrder&#xA;&#x9;(Order_SK INT IDENTITY(1, 1) CONSTRAINT pk_Order_SK PRIMARY KEY,&#xA;&#x9;Order_AK INT,&#xA;&#x9;DeliveryNation NVARCHAR(50),&#xA;&#x9;DeliveryState NVARCHAR(20),&#xA;&#x9;DeliveryCity NVARCHAR(30),&#xA;&#x9;PriceAdjustment DECIMAL(38, 4),&#xA;&#x9;Currency NVARCHAR(5)&#xA;&#x9;);&#xA;&#x9;&#xA;CREATE TABLE DimDate&#xA;&#x9;(&#x9;&#xA;&#x9;&#x9;Date_SK INT PRIMARY KEY, &#xA;&#x9;&#x9;Date DATETIME,&#xA;&#x9;&#x9;FullDate CHAR(10),-- Date in MM-dd-yyyy format&#xA;&#x9;&#x9;DayOfMonth INT, -- Field will hold day number of Month&#xA;&#x9;&#x9;DayName VARCHAR(9), -- Contains name of the day, Sunday, Monday &#xA;&#x9;&#x9;DayOfWeek INT,-- First Day Sunday=1 and Saturday=7&#xA;&#x9;&#x9;DayOfWeekInMonth INT, -- 1st Monday or 2nd Monday in Month&#xA;&#x9;&#x9;DayOfWeekInYear INT,&#xA;&#x9;&#x9;DayOfQuarter INT,&#xA;&#x9;&#x9;DayOfYear INT,&#xA;&#x9;&#x9;WeekOfMonth INT,-- Week Number of Month &#xA;&#x9;&#x9;WeekOfQuarter INT, -- Week Number of the Quarter&#xA;&#x9;&#x9;WeekOfYear INT,-- Week Number of the Year&#xA;&#x9;&#x9;Month INT, -- Number of the Month 1 to 12{}&#xA;&#x9;&#x9;MonthName VARCHAR(9),-- January, February etc&#xA;&#x9;&#x9;MonthOfQuarter INT,-- Month Number belongs to Quarter&#xA;&#x9;&#x9;Quarter CHAR(2),&#xA;&#x9;&#x9;QuarterName VARCHAR(9),-- First,Second..&#xA;&#x9;&#x9;Year INT,-- Year value of Date stored in Row&#xA;&#x9;&#x9;YearName CHAR(7), -- CY 2015,CY 2016&#xA;&#x9;&#x9;MonthYear CHAR(10), -- Jan-2016,Feb-2016&#xA;&#x9;&#x9;MMYYYY INT,&#xA;&#x9;&#x9;FirstDayOfMonth DATE,&#xA;&#x9;&#x9;LastDayOfMonth DATE,&#xA;&#x9;&#x9;FirstDayOfQuarter DATE,&#xA;&#x9;&#x9;LastDayOfQuarter DATE,&#xA;&#x9;&#x9;FirstDayOfYear DATE,&#xA;&#x9;&#x9;LastDayOfYear DATE,&#xA;&#x9;&#x9;IsHoliday BIT,-- Flag 1=National Holiday, 0-No National Holiday&#xA;&#x9;&#x9;IsWeekday BIT,-- 0=Week End ,1=Week Day&#xA;&#x9;&#x9;Holiday VARCHAR(50),--Name of Holiday in US&#xA;&#x9;&#x9;Season VARCHAR(10)--Name of Season&#xA;&#x9;);&#xA;&#xA;&#xA;CREATE TABLE FactBatch&#xA;&#x9;(QuantityProduced INT,&#xA;&#x9;QualityRating INT,&#xA;&#x9;EstimatedEndTime INT,&#xA;&#x9;ActualEndTime INT,&#xA;&#x9;ShippingDate INT,&#xA;&#x9;ProductionCost DECIMAL(38,4),&#xA;&#x9;ShippingCost INT,&#xA;&#x9;QuantityShipped INT,&#xA;&#x9;OrderQuantity INT,&#xA;&#x9;OrderSalePrice INT,&#xA;&#x9;Order_SK INT NOT NULL CONSTRAINT Fk_Order_SK FOREIGN KEY REFERENCES DimOrder(Order_SK),&#xA;&#x9;Compliance_SK INT CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES DimCompliance(Compliance_SK),&#xA;&#x9;Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),&#xA;&#x9;Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),&#xA;&#x9;Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),&#xA;&#x9;StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),&#xA;&#x9;CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)&#xA;&#x9;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2204,6 +2965,14 @@ FROM Broadcloth.dbo.Shipment;</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Load Dimension Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3ADBE7F6-4D93-4C5E-9DD5-097CD9FCB47B}"
+      DTS:From="Package\Load Dimension Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Fact Table" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2364,21 +3133,21 @@ FROM Broadcloth.dbo.Shipment;</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="330,448"
-          Size="330,491"
+          PanelSize="330,474"
+          Size="330,517"
           Id="Package\Load Dimension Tables"
-          TopLeft="230,233" />
+          TopLeft="424.353174603175,184.821428571428" />
         <NodeLayout
           Size="201,42"
-          Id="Package\Fill Fact Tables Sequence Containers\FactBatch Data Flow Task"
-          TopLeft="39,27.25" />
+          Id="Package\Load Fact Table\FactBatch Data Flow Task"
+          TopLeft="21.8571428571429,15.8214285714286" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="324,147"
-          Size="324,190"
-          Id="Package\Fill Fact Tables Sequence Containers"
-          TopLeft="230.916666666667,752.25" />
+          PanelSize="248,88"
+          Size="248,131"
+          Id="Package\Load Fact Table"
+          TopLeft="894.496031746032,377.821428571429" />
         <NodeLayout
           Size="172,42"
           Id="Package\Prepare ETL Process\BroadclothDW Build"
@@ -2389,28 +3158,52 @@ FROM Broadcloth.dbo.Shipment;</property>
           PanelSize="234,101"
           Size="234,144"
           Id="Package\Prepare ETL Process"
-          TopLeft="276,33" />
+          TopLeft="79.4960317460318,371.321428571429" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="394,177">
+          TopLeft="313.496031746032,443.321428571429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,56"
+              EndConnector="110.857142857143,0"
               Start="0,0"
-              End="0,48.5">
+              End="103.357142857143,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.5" />
+                    End="103.357142857143,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-17.9932421875,19.47314453125,35.986484375,9.5537109375"
+              BoundingBox="33.6853292410714,5,35.986484375,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="754.353174603175,443.321428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.142857142857,0"
+              Start="0,0"
+              End="132.642857142857,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="132.642857142857,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="48.3281863839287,5,35.986484375,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2607,6 +3400,44 @@ FROM Broadcloth.dbo.Shipment;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load Fact Table\FactBatch Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source"
+          TopLeft="381.25,159" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination"
+          TopLeft="370.75,338" />
+        <EdgeLayout
+          Id="Package\Load Fact Table\FactBatch Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="456.25,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,137"
+              Start="0,0"
+              End="0,129.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,129.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Load Dimension Tables\DimFactory Data Flow Task\OLE DB Source">
     <Properties>
@@ -2701,6 +3532,27 @@ FROM Broadcloth.dbo.Shipment;</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Dimension Tables\DimOrder Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

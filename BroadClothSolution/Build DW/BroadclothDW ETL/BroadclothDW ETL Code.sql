@@ -61,60 +61,83 @@ FROM Broadcloth.dbo.CustomerOrder;
 SELECT
 	--keys
 	Order_SK = DimOrder.Order_SK,
-	Compliance_SK = ISNULL(DimCompliance.Compliance_SK, 0),
+	Compliance_SK = DimCompliance.Compliance_SK,
 	Factory_SK = DimFactory.Factory_SK,
 	Item_SK = DimItem.Item_SK,
 	Shipment_SK = DimShipment.Shipment_SK,
 	StartDate = DimDate.Date_SK,
-	--EstimatedEndTime= EETDW.date_SK,
-	--ActualEndTime = AETDW.date_SK,
-	--ShippingDate = SDDW.date_SK,
+	EstimatedEndTime= EETDW.Date_SK,
+	ActualEndTime = AETDW.Date_SK,
+	ShippingDate = SDDW.Date_SK,
 
 	--measures
-	QuantityProduced = Productionbatch.quantityproduced
-	--QualityRating = Productionbatch.qualityrating,
-	--ProductionCost = broadcloth.dbo.productionbatch.productioncost,
-	--ShippingCost = shipment.shipcost,
-	--QuantityShipped = Shipmentitem.quantityshipped ,
-	--OrderQuantity = Orderitem.orderquantity,
-	--OrderSalePrice = orderitem.saleprice
+	QuantityProduced = Productionbatch.quantityproduced,
+	QualityRating = Productionbatch.qualityrating,
+	ProductionCost = CAST(ProductionBatch.ProductionCost AS DECIMAL(38,4)),
+	ShippingCost = Shipment.ShipCost,
+	QuantityShipped = ShipmentItem.QuantityShipped,
+	OrderQuantity = SUM(OrderItem.OrderQuantity),
+	OrderSalePrice = AVG(OrderItem.SalePrice)
 	
-FROM Broadcloth.dbo.productionbatch
-JOIN Broadcloth.dbo.orderitem
-	ON orderitem.orderID = productionbatch.orderID
+FROM Broadcloth.dbo.ProductionBatch
+INNER JOIN Broadcloth.dbo.OrderItem
+	ON OrderItem.OrderID = ProductionBatch.OrderID
+
 --Order Joins
-JOIN Broadcloth.dbo.CustomerOrder
-	ON customerorder.orderID = orderitem.orderID
+INNER JOIN CustomerOrder
+	ON CustomerOrder.OrderID = ProductionBatch.OrderID
 JOIN BroadclothDW.dbo.DimOrder
-	ON  orderitem.orderid = dimorder.order_AK
+	ON  CustomerOrder.OrderID = DimOrder.Order_AK
+
 --Factory Joins
-JOIN broadcloth.dbo.factory
-	ON factory.factoryID = productionbatch.factoryID
-JOIN broadclothdw.dbo.dimfactory
-	ON factory.factoryID = dimfactory.factory_AK
+JOIN Broadcloth.dbo.Factory
+	ON Factory.FactoryID = ProductionBatch.FactoryID
+JOIN BroadclothDW.dbo.DimFactory
+	ON Factory.FactoryID = DimFactory.Factory_AK
+
 --Compliance Joins
 LEFT OUTER JOIN Broadcloth.dbo.compliance
-	ON compliance.factoryid = factory.factoryID
+	ON Compliance.FactoryID = Factory.FactoryID
 LEFT OUTER JOIN broadclothdw.dbo.DimCompliance
-	ON broadcloth.dbo.compliance.complianceID = dimcompliance.compliance_AK
---Item Joins
-JOIN broadcloth.dbo.item
-	ON item.ItemID = productionbatch.ItemID
-JOIN Broadclothdw.dbo.DimItem
-	ON Item.ItemID = DimItem.item_AK
---Shipment Join
-JOIN Broadcloth.dbo.shipmentItem
-	ON customerorder.orderID = shipmentitem.orderID
-JOIN Broadcloth.dbo.Shipment
-	ON shipment.shipmentID = ShipmentItem.ShipmentID
-JOIN BroadclothDW.dbo.DimShipment
-	ON shipment.shipmentID = DimShipment.Shipment_AK
+	ON Compliance.ComplianceID = DimCompliance.Compliance_AK
 
+--Item Joins
+JOIN Broadcloth.dbo.Item 
+	ON Item.ItemID = ProductionBatch.ItemID
+JOIN Broadclothdw.dbo.DimItem
+	ON ProductionBatch.ItemID = DimItem.Item_AK
+
+--Shipment Join
+INNER JOIN ShipmentItem
+	ON Item.ItemID = ShipmentItem.ItemID
+INNER JOIN Shipment
+	ON Shipment.ShipmentID = ShipmentItem.ShipmentID
+JOIN BroadclothDW.dbo.DimShipment
+	ON Shipment.ShipmentID = DimShipment.Shipment_AK
+
+--Date Join
 JOIN BroadclothDW.dbo.DimDate AS DimDate
-	ON CAST(productionbatch.startdatetime as DATE) = Dimdate.Date
+	ON CAST(ProductionBatch.StartDateTime as DATE) = Dimdate.Date
 JOIN BroadclothDW.dbo.DimDate AS EETDW
-	ON CAST(productionbatch.estendTime as DATE) = EETDW.Date
+	ON CAST(ProductionBatch.EstEndTime as DATE) = EETDW.Date
 JOIN BroadclothDW.dbo.DimDate AS AETDW
 	ON CAST(productionbatch.ActualEndTime as DATE) =  AETDW.Date
 JOIN BroadclothDW.dbo.Dimdate AS SDDW
-	ON CAST(Shipment.ShipDate AS DATE) = SDDW.Date;
+	ON CAST(Shipment.ShipDate AS DATE) = SDDW.Date
+	
+GROUP BY 
+	DimOrder.Order_SK,
+	DimCompliance.Compliance_SK,
+	DimFactory.Factory_SK,
+	DimItem.Item_SK,
+	DimShipment.Shipment_SK,
+	DimDate.Date_SK,
+	EETDW.Date_SK,
+	AETDW.Date_SK,
+	SDDW.Date_SK,
+	Productionbatch.quantityproduced,
+	Productionbatch.qualityrating,
+	CAST(ProductionBatch.ProductionCost AS DECIMAL(38,4)),
+	Shipment.ShipCost,
+	Shipmentitem.QuantityShipped
+ORDER BY Shipment_SK;
