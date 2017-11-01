@@ -71,8 +71,8 @@ SELECT
 	ShippingDate = SDDW.Date_SK,
 
 	--measures
-	QuantityProduced = Productionbatch.quantityproduced,
-	QualityRating = Productionbatch.qualityrating,
+	QuantityProduced = Productionbatch.QuantityProduced,
+	QualityRating = Productionbatch.QualityRating,
 	ProductionCost = CAST(ProductionBatch.ProductionCost AS DECIMAL(38,4)),
 	ShippingCost = Shipment.ShipCost,
 	QuantityShipped = ShipmentItem.QuantityShipped,
@@ -117,11 +117,11 @@ JOIN BroadclothDW.dbo.DimShipment
 
 --Date Join
 JOIN BroadclothDW.dbo.DimDate AS DimDate
-	ON CAST(ProductionBatch.StartDateTime as DATE) = Dimdate.Date
+	ON CAST(ProductionBatch.StartDateTime AS DATE) = Dimdate.Date
 JOIN BroadclothDW.dbo.DimDate AS EETDW
-	ON CAST(ProductionBatch.EstEndTime as DATE) = EETDW.Date
+	ON CAST(ProductionBatch.EstEndTime AS DATE) = EETDW.Date
 JOIN BroadclothDW.dbo.DimDate AS AETDW
-	ON CAST(productionbatch.ActualEndTime as DATE) =  AETDW.Date
+	ON CAST(ProductionBatch.ActualEndTime AS DATE) =  AETDW.Date
 JOIN BroadclothDW.dbo.Dimdate AS SDDW
 	ON CAST(Shipment.ShipDate AS DATE) = SDDW.Date
 	
@@ -135,8 +135,8 @@ GROUP BY
 	EETDW.Date_SK,
 	AETDW.Date_SK,
 	SDDW.Date_SK,
-	Productionbatch.quantityproduced,
-	Productionbatch.qualityrating,
+	Productionbatch.QuantityProduced,
+	Productionbatch.QualityRating,
 	CAST(ProductionBatch.ProductionCost AS DECIMAL(38,4)),
 	Shipment.ShipCost,
 	Shipmentitem.QuantityShipped

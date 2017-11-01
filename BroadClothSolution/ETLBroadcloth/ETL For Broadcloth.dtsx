@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL For Broadcloth"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{FE6DF808-6A5C-4A6C-AF81-7B2598270EAE}">
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{B0ACC34D-556B-4579-9BF5-43A816E2CB07}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3133,10 +3133,10 @@ ORDER BY Shipment_SK;</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="330,474"
-          Size="330,517"
+          PanelSize="330,445"
+          Size="330,488"
           Id="Package\Load Dimension Tables"
-          TopLeft="424.353174603175,184.821428571428" />
+          TopLeft="422.130952380952,40.765873015873" />
         <NodeLayout
           Size="201,42"
           Id="Package\Load Fact Table\FactBatch Data Flow Task"
@@ -3145,9 +3145,9 @@ ORDER BY Shipment_SK;</property>
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="248,88"
-          Size="248,131"
+          Size="248,133"
           Id="Package\Load Fact Table"
-          TopLeft="894.496031746032,377.821428571429" />
+          TopLeft="853.384920634921,218.265873015873" />
         <NodeLayout
           Size="172,42"
           Id="Package\Prepare ETL Process\BroadclothDW Build"
@@ -3155,55 +3155,55 @@ ORDER BY Shipment_SK;</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="234,101"
-          Size="234,144"
+          PanelSize="248,90"
+          Size="248,133"
           Id="Package\Prepare ETL Process"
-          TopLeft="79.4960317460318,371.321428571429" />
+          TopLeft="77.2738095238095,218.265873015873" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="313.496031746032,443.321428571429">
+          TopLeft="325.27380952381,284.765873015874">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="110.857142857143,0"
+              EndConnector="96.8571428571429,0"
               Start="0,0"
-              End="103.357142857143,0">
+              End="89.3571428571429,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="103.357142857143,0" />
+                    End="89.3571428571429,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="33.6853292410714,5,35.986484375,9.5537109375"
+              BoundingBox="26.6853292410714,5,35.986484375,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="754.353174603175,443.321428571429">
+          TopLeft="752.130952380952,284.765873015873">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="140.142857142857,0"
+              EndConnector="101.253968253968,0"
               Start="0,0"
-              End="132.642857142857,0">
+              End="93.7539682539684,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="132.642857142857,0" />
+                    End="93.7539682539684,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="48.3281863839287,5,35.986484375,9.5537109375"
+              BoundingBox="28.8837419394842,5,35.986484375,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
