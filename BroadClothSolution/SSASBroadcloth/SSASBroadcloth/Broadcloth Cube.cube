@@ -1,0 +1,486 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="1c6a4ba1-1f02-45c3-90b9-a29cd9345ba3" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Broadcloth Cube</ID>
+  <Name>Broadcloth Cube</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="18" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-12805" scrolltop="-2435" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="21034" y="16272" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="152" top="0" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="3545" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a0000d90d000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimDate" left="20" top="7400" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="3810" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a0000e20e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DimDate" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimFactory" left="6097" top="502" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="3149" height="3995" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00004d0c00009b0f0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DimFactory" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="3397" top="2100" logicalid="9" controlid="4" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Factory_SK]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="1" sourceattachpoint="16" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="6097" y="2499" />
+              <point x="4897" y="2499" />
+              <point x="4897" y="2500" />
+              <point x="3697" y="2500" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="-4048" top="0" logicalid="10" controlid="5" masterid="0" hint1="0" hint2="0" width="3519" height="11403" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a0000bf0d00008b2c0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="0" top="0" logicalid="12" controlid="7" masterid="0" hint1="0" hint2="0" width="3995" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00009b0f000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="0" top="0" logicalid="13" controlid="8" masterid="0" hint1="0" hint2="0" width="3995" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00009b0f000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="0" top="0" logicalid="14" controlid="9" masterid="0" hint1="0" hint2="0" width="3995" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00009b0f000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="0" top="0" logicalid="15" controlid="10" masterid="0" hint1="0" hint2="0" width="4445" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00005d11000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="0" top="0" logicalid="16" controlid="11" masterid="0" hint1="0" hint2="0" width="4445" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00005d11000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactBatch" left="0" top="0" logicalid="17" controlid="12" masterid="0" hint1="0" hint2="0" width="4445" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000a00005d11000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_FactBatch" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-12805</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-2435</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>-4048</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="7276f29e-bb03-4f9c-a554-c968f71c6a4c">
+      <ID>Dim Factory</ID>
+      <Name>Dim Factory</Name>
+      <DimensionID>Dim Factory</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="a0ee6f3a-40ef-4624-ae81-f391000b48e3">
+          <AttributeID>Factory SK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="222b0b16-370f-4a83-b6c2-7214f84ffca4">
+          <AttributeID>Nation</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="39ce3822-829b-452a-bc8c-a2f4d07c6929">
+          <AttributeID>City</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="abef4204-95b1-4344-a79f-a7d74d64d5ed">
+          <AttributeID>GMT Difference</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="000cb483-8541-4300-b375-07c072ae021b">
+          <AttributeID>Max Workers</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="43ec4ac6-f5ec-4e11-aeb5-8975865ffd67">
+          <AttributeID>Base Currency</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="7d686400-c0e7-464a-b06e-dc536c0a629d">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="855b450b-8eb5-4787-b9a3-1fe78bffb3b4">
+      <ID>Dim Date</ID>
+      <Name>Dim Date</Name>
+      <DimensionID>Dim Date</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7d970f85-13d4-43f0-96e6-440adf41f914">
+          <AttributeID>Date SK</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3cc6c18d-c909-4abd-8979-f6647fbda042">
+          <AttributeID>Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0687bd07-0b17-4af9-931d-9dc09217bb42">
+          <AttributeID>Month Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="32c9ae96-da7b-4f13-9240-635c1d795f58">
+          <AttributeID>Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b06ff1c4-ac12-4d99-91bd-c6f31d08c56e">
+          <AttributeID>Holidays</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cc548a8f-34c0-4635-b230-9d5e2a1d4127">
+          <AttributeID>Weekdays</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="0d900f08-3229-43c7-8eec-0cec50de5611">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="a122fc4b-bd29-44a2-b449-09c0088b2637">
+      <ID>Fact Batch</ID>
+      <Name>Fact Batch</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="a2256851-f1d4-4a07-98fc-44547440a5aa">
+          <ID>Quantity Produced</ID>
+          <Name>Quantity Produced</Name>
+          <Source dwd:design-time-name="f5f4628f-7118-4e10-8e37-6579c8177805">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c9825359-f777-4353-88e9-7deeb4795717">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>QuantityProduced</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="5bf96fef-4a7f-4fcd-adbc-4c8f1b555802">
+          <ID>Quality Rating</ID>
+          <Name>Quality Rating</Name>
+          <Source dwd:design-time-name="9f64535b-48df-4cde-9699-e1bfd4de11cb">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c04c73d9-2364-4aab-97fb-ad6587fdb4bb">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>QualityRating</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="01105d47-aac9-4a53-8e19-60cad6e934a5">
+          <ID>Production Cost</ID>
+          <Name>Production Cost</Name>
+          <Source dwd:design-time-name="97d74ab0-9eae-4fca-9681-d124e77bc6bc">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="eb17003f-d8fc-45e4-8704-81ac370c79f2">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>ProductionCost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="de95e313-e592-4b4d-a7ed-eb9c313efdc6">
+          <ID>Shipping Cost</ID>
+          <Name>Shipping Cost</Name>
+          <Source dwd:design-time-name="ae867128-2507-4def-888a-ff33f0ac79f8">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="087d0f30-6318-430a-b5f0-aa0f6ba94ffd">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>ShippingCost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="0344cf92-f547-44ae-976d-055496d3521f">
+          <ID>Quantity Shipped</ID>
+          <Name>Quantity Shipped</Name>
+          <Source dwd:design-time-name="71f4199b-37a2-46aa-b4d9-ad07c5360476">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f4de6cd5-b9b8-49cf-9cff-ccaf9c76d520">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>QuantityShipped</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="f38c55cb-80a7-4c9c-86ee-ed226befd5ef">
+          <ID>Order Quantity</ID>
+          <Name>Order Quantity</Name>
+          <Source dwd:design-time-name="8f4a6d5a-0145-4917-b072-8daf275bf519">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f6022ef6-893f-4eda-954e-707ddbf2b470">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>OrderQuantity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="84200b0c-326b-45c6-8f32-b1fae299ff3d">
+          <ID>Order Sale Price</ID>
+          <Name>Order Sale Price</Name>
+          <Source dwd:design-time-name="43da7879-2121-4a55-9fea-29ca9f3fcbd5">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="5f78db16-80eb-453e-86a5-4f58b70ac781">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>OrderSalePrice</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="8fcaa79a-c995-42bc-81ef-e26c45f8f82c">
+          <ID>Fact Batch Count</ID>
+          <Name>Fact Batch Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="7e06f635-7c95-4efa-b8c9-e9cc4bed7579">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="287a90c1-24b6-470b-8d78-d23d3d758cad">
+              <TableID>dbo_FactBatch</TableID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="f875cf76-281c-4759-ae06-485cb5bb8c49">
+          <ID>Quality Rating Count</ID>
+          <Name>Quality Rating Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <DataType>Integer</DataType>
+          <Source dwd:design-time-name="211e6edc-2bc7-4dab-8ec8-d968aa639955">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="edb5a8e6-359d-4b26-8617-9cc9aacd628b">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>QualityRating</ColumnID>
+            </Source>
+          </Source>
+          <Visible>false</Visible>
+        </Measure>
+        <Measure dwd:design-time-name="de24c299-1607-46c8-beb7-d29d9fdf92f7">
+          <ID>Estimated Completion Time</ID>
+          <Name>Estimated Completion Time</Name>
+          <Source dwd:design-time-name="48db724f-bde8-43e8-ab22-ed40a528a104">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e3422b8f-9f7d-4392-a1b6-c073a868c87d">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>EstimatedCompletionTime</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="22639d9a-302c-447b-98a1-d4c61d90c2fa">
+          <ID>Actual Completion Time</ID>
+          <Name>Actual Completion Time</Name>
+          <Source dwd:design-time-name="e389069f-78bf-40bf-940d-fd79a817af9c">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e3404931-c6ab-47a1-88ac-dcf91b839e3b">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>ActualCompletionTime</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="41a3507c-39e2-4655-be2b-67fe9cf456ad">
+          <ID>Total Completion Time</ID>
+          <Name>Total Completion Time</Name>
+          <Source dwd:design-time-name="9bbd679d-abde-4a2f-9993-c4822cef9817">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f78456a4-55fa-4e4c-996a-7b8625836c4a">
+              <TableID>dbo_FactBatch</TableID>
+              <ColumnID>TotalCompletionTime</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="de7c9dae-98ba-44bb-8d4b-06ebf60a81b3">
+          <CubeDimensionID>Dim Date</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="c90cda77-aa0e-4e85-9f2a-c8a7010f3df2">
+              <AttributeID>Date SK</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="02933f16-14dd-43a2-929b-10bb7593a75e">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="e51011ae-71b4-4df4-bef5-1c52caaa2a96">
+                    <TableID>dbo_FactBatch</TableID>
+                    <ColumnID>StartDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="4afd6be0-6eb8-4785-83c4-0fdc63cc2e27">
+          <CubeDimensionID>Dim Factory</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="f99fe034-5cca-4931-8aa7-c444a8ac9f97">
+              <AttributeID>Factory SK</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="dfd05681-a047-4b9b-aa68-ad1364840420">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="6b48d521-8670-4c73-8c01-6494d28bfaa9">
+                    <TableID>dbo_FactBatch</TableID>
+                    <ColumnID>Factory_SK</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="ca717a16-ae3c-46b4-b08d-3f2ffc9284ae">
+    <DataSourceViewID>Broadcloth DW</DataSourceViewID>
+  </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="01a474b8-e9b5-4571-abc0-6f1a6e25eae5">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE;   
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Quality Rating]
+ AS [Measures].[Quality Rating] / [Measures].[Quality Rating Count], 
+FORMAT_STRING = "0.00", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Days in Shipping]
+ AS [Measures].[Total Completion Time] - [Measures].[Actual Completion Time], 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Days Late]
+ AS [Measures].[Actual Completion Time] - [Measures].[Estimated Completion Time], 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Days in Shipping]
+ AS [Measures].[Days in Shipping]/[Measures].[Fact Batch Count], 
+FORMAT_STRING = "0", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Days Late]
+ AS [Measures].[Days Late]/[Measures].[Fact Batch Count], 
+FORMAT_STRING = "0", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Profit]
+ AS [Measures].[Order Sale Price]*[Measures].[Order Quantity]-[Measures].[Production Cost]-[Measures].[Shipping Cost]*[Measures].[Quantity Shipped], 
+FORMAT_STRING = "$#,##0.00;-$#,##0.00", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Batch Profit]
+ AS [Measures].[Profit]/[Measures].[Fact Batch Count], 
+FORMAT_STRING = "$#,##0.00;-$#,##0.00", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Total Shipping Cost]
+ AS [Measures].[Shipping Cost]*[Measures].[Quantity Shipped], 
+FORMAT_STRING = "$#,##0.00;-$#,##0.00", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Batch Shipping Cost]
+ AS [Measures].[Total Shipping Cost] / [Measures].[Fact Batch Count], 
+FORMAT_STRING = "$#,##0.00;-$#,##0.00", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Production Cost]
+ AS [Measures].[Production Cost] / [Measures].[Fact Batch Count], 
+FORMAT_STRING = "$#,##0.00;-$#,##0.00", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Batch'  ; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
+</Cube>
