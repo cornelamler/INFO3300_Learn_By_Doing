@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "SSASBroadcloth", "SSASBroadcloth\SSASBroadcloth.dwproj", "{EDB51319-F24C-46D1-BBE9-3D6416A29980}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cube Analysis", "Cube Analysis", "{7C37FB88-1597-4D81-AA39-A22386B977F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDB51319-F24C-46D1-BBE9-3D6416A29980}.Development|Default.ActiveCfg = Development
+		{EDB51319-F24C-46D1-BBE9-3D6416A29980}.Development|Default.Build.0 = Development
+		{EDB51319-F24C-46D1-BBE9-3D6416A29980}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
