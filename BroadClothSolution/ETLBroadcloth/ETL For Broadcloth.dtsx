@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL For Broadcloth"
   DTS:PackageType="5"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{B0ACC34D-556B-4579-9BF5-43A816E2CB07}">
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{1402FDF1-3996-47B3-83CE-73464B7510A0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1069,7 +1069,7 @@ FROM Broadcloth.dbo.Factory;</property>
                       name="SqlCommand"
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
 	Item_AK = CAST(Item.ItemID AS NVARCHAR(60)),
-	ModelDescription = CAST(Model.ModelID AS NVARCHAR(250)),
+	ModelDescription = CAST(Model.ModelDescription AS NVARCHAR(250)),
 	BasePrice = CAST( BasePrice AS DECIMAL (9,4)),
 	ListPrice = CAST(ListPrice AS NUMERIC(38,4)),
 	Color = CAST( Color AS NVARCHAR (20)),
@@ -2349,15 +2349,15 @@ FROM Broadcloth.dbo.Shipment;</property>
                           name="QualityRating" />
                         <externalMetadataColumn
                           refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstimatedEndTime]"
-                          dataType="i4"
+                          dataType="dbDate"
                           name="EstimatedEndTime" />
                         <externalMetadataColumn
                           refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualEndTime]"
-                          dataType="i4"
+                          dataType="dbDate"
                           name="ActualEndTime" />
                         <externalMetadataColumn
                           refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingDate]"
-                          dataType="i4"
+                          dataType="dbDate"
                           name="ShippingDate" />
                         <externalMetadataColumn
                           refId="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCost]"
@@ -2950,7 +2950,7 @@ ORDER BY Shipment_SK;</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{8A713B2C-F044-436A-B642-D0CEFE7945F4}"
-              SQLTask:SqlStatementSource="--Created by Raleigh, Sydney, Aleksandra, and Cornel&#xA;--Version 1&#xA;--Build Broadcloth Production Batch Data Mart&#xA;--Created October 5th, 2017&#xA;&#xA;use master&#xA;--Creating the Data Warehouse&#xA;IF NOT EXISTS(SELECT * FROM sys.databases  --only adds if it doesn't exist&#xA;&#x9;WHERE name = N'BroadclothDW')&#xA;&#x9;CREATE DATABASE BroadclothDW&#xA;GO&#xA;USE BroadclothDW&#xA;GO&#xA;&#xA;--Checking for Existing Tables&#xA;IF EXISTS( --removes a table if it exists&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'FactBatch'&#xA;&#x9;)&#xA;&#x9;DROP TABLE FactBatch;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimDate'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimDate;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimShipment'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimShipment;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimCompliance'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimCompliance;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimOrder'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimOrder;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimItem'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimItem;&#xA;&#xA;&#x9;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimFactory'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimFactory;&#xA;&#x9;&#xA;CREATE TABLE DimShipment&#xA;&#x9;(Shipment_SK INT IDENTITY(1,1) CONSTRAINT pk_Shipment_SK PRIMARY KEY,&#xA;&#x9;Shipment_AK INT,&#xA;&#x9;Nation NVARCHAR (50),&#xA;&#x9;[State] NVARCHAR(20),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;ShippingCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimCompliance&#xA;&#x9;(Compliance_SK INT IDENTITY(1, 1) CONSTRAINT pk_Compliance_SK PRIMARY KEY,&#xA;&#x9;Compliance_AK INT,&#xA;&#x9;--ConditionCategory NVARCHAR(50),&#xA;&#x9;OverallComplianceRating DECIMAL(18, 0),&#xA;&#x9;AverageAge DECIMAL(18, 0),&#xA;&#x9;--AgeDocuments NVARCHAR(20),&#xA;&#x9;PercentFemale DECIMAL(9,6)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimFactory&#xA;&#x9;(Factory_SK INT IDENTITY(1, 1) CONSTRAINT pk_Factory_SK PRIMARY KEY,&#xA;&#x9;Factory_AK INT,&#xA;&#x9;Nation NVARCHAR(50),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;GMTDifference DECIMAL(18, 0),&#xA;&#x9;MaxWorkers INT,&#xA;&#x9;BaseCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimItem&#xA;&#x9;(Item_SK INT IDENTITY(1, 1) CONSTRAINT pk_Item_SK PRIMARY KEY,&#xA;&#x9;Item_AK NVARCHAR(60) NOT NULL,&#xA;&#x9;ModelDescription NVARCHAR(250) NOT NULL,&#xA;&#x9;BasePrice DECIMAL(9, 4),&#xA;&#x9;ListPrice DECIMAL(38,4),&#xA;&#x9;Color NVARCHAR(20),&#xA;&#x9;ItemSize DECIMAL(18, 0)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimOrder&#xA;&#x9;(Order_SK INT IDENTITY(1, 1) CONSTRAINT pk_Order_SK PRIMARY KEY,&#xA;&#x9;Order_AK INT,&#xA;&#x9;DeliveryNation NVARCHAR(50),&#xA;&#x9;DeliveryState NVARCHAR(20),&#xA;&#x9;DeliveryCity NVARCHAR(30),&#xA;&#x9;PriceAdjustment DECIMAL(38, 4),&#xA;&#x9;Currency NVARCHAR(5)&#xA;&#x9;);&#xA;&#x9;&#xA;CREATE TABLE DimDate&#xA;&#x9;(&#x9;&#xA;&#x9;&#x9;Date_SK INT PRIMARY KEY, &#xA;&#x9;&#x9;Date DATETIME,&#xA;&#x9;&#x9;FullDate CHAR(10),-- Date in MM-dd-yyyy format&#xA;&#x9;&#x9;DayOfMonth INT, -- Field will hold day number of Month&#xA;&#x9;&#x9;DayName VARCHAR(9), -- Contains name of the day, Sunday, Monday &#xA;&#x9;&#x9;DayOfWeek INT,-- First Day Sunday=1 and Saturday=7&#xA;&#x9;&#x9;DayOfWeekInMonth INT, -- 1st Monday or 2nd Monday in Month&#xA;&#x9;&#x9;DayOfWeekInYear INT,&#xA;&#x9;&#x9;DayOfQuarter INT,&#xA;&#x9;&#x9;DayOfYear INT,&#xA;&#x9;&#x9;WeekOfMonth INT,-- Week Number of Month &#xA;&#x9;&#x9;WeekOfQuarter INT, -- Week Number of the Quarter&#xA;&#x9;&#x9;WeekOfYear INT,-- Week Number of the Year&#xA;&#x9;&#x9;Month INT, -- Number of the Month 1 to 12{}&#xA;&#x9;&#x9;MonthName VARCHAR(9),-- January, February etc&#xA;&#x9;&#x9;MonthOfQuarter INT,-- Month Number belongs to Quarter&#xA;&#x9;&#x9;Quarter CHAR(2),&#xA;&#x9;&#x9;QuarterName VARCHAR(9),-- First,Second..&#xA;&#x9;&#x9;Year INT,-- Year value of Date stored in Row&#xA;&#x9;&#x9;YearName CHAR(7), -- CY 2015,CY 2016&#xA;&#x9;&#x9;MonthYear CHAR(10), -- Jan-2016,Feb-2016&#xA;&#x9;&#x9;MMYYYY INT,&#xA;&#x9;&#x9;FirstDayOfMonth DATE,&#xA;&#x9;&#x9;LastDayOfMonth DATE,&#xA;&#x9;&#x9;FirstDayOfQuarter DATE,&#xA;&#x9;&#x9;LastDayOfQuarter DATE,&#xA;&#x9;&#x9;FirstDayOfYear DATE,&#xA;&#x9;&#x9;LastDayOfYear DATE,&#xA;&#x9;&#x9;IsHoliday BIT,-- Flag 1=National Holiday, 0-No National Holiday&#xA;&#x9;&#x9;IsWeekday BIT,-- 0=Week End ,1=Week Day&#xA;&#x9;&#x9;Holiday VARCHAR(50),--Name of Holiday in US&#xA;&#x9;&#x9;Season VARCHAR(10)--Name of Season&#xA;&#x9;);&#xA;&#xA;&#xA;CREATE TABLE FactBatch&#xA;&#x9;(QuantityProduced INT,&#xA;&#x9;QualityRating INT,&#xA;&#x9;EstimatedEndTime INT,&#xA;&#x9;ActualEndTime INT,&#xA;&#x9;ShippingDate INT,&#xA;&#x9;ProductionCost DECIMAL(38,4),&#xA;&#x9;ShippingCost INT,&#xA;&#x9;QuantityShipped INT,&#xA;&#x9;OrderQuantity INT,&#xA;&#x9;OrderSalePrice INT,&#xA;&#x9;Order_SK INT NOT NULL CONSTRAINT Fk_Order_SK FOREIGN KEY REFERENCES DimOrder(Order_SK),&#xA;&#x9;Compliance_SK INT CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES DimCompliance(Compliance_SK),&#xA;&#x9;Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),&#xA;&#x9;Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),&#xA;&#x9;Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),&#xA;&#x9;StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),&#xA;&#x9;CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)&#xA;&#x9;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="--Created by Raleigh, Sydney, Aleksandra, and Cornel&#xA;--Version 1&#xA;--Build Broadcloth Production Batch Data Mart&#xA;--Created October 5th, 2017&#xA;&#xA;use master&#xA;--Creating the Data Warehouse&#xA;IF NOT EXISTS(SELECT * FROM sys.databases  --only adds if it doesn't exist&#xA;&#x9;WHERE name = N'BroadclothDW')&#xA;&#x9;CREATE DATABASE BroadclothDW&#xA;GO&#xA;USE BroadclothDW&#xA;GO&#xA;&#xA;--Checking for Existing Tables&#xA;IF EXISTS( --removes a table if it exists&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'FactBatch'&#xA;&#x9;)&#xA;&#x9;DROP TABLE FactBatch;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimDate'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimDate;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimShipment'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimShipment;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimCompliance'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimCompliance;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimOrder'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimOrder;&#xA;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimItem'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimItem;&#xA;&#xA;&#x9;&#xA;IF EXISTS(&#xA;&#x9;SELECT *&#xA;&#x9;FROM sys.tables&#xA;&#x9;WHERE name = N'DimFactory'&#xA;&#x9;)&#xA;&#x9;DROP TABLE DimFactory;&#xA;&#x9;&#xA;CREATE TABLE DimShipment&#xA;&#x9;(Shipment_SK INT IDENTITY(1,1) CONSTRAINT pk_Shipment_SK PRIMARY KEY,&#xA;&#x9;Shipment_AK INT,&#xA;&#x9;Nation NVARCHAR (50),&#xA;&#x9;[State] NVARCHAR(20),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;ShippingCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimCompliance&#xA;&#x9;(Compliance_SK INT IDENTITY(1, 1) CONSTRAINT pk_Compliance_SK PRIMARY KEY,&#xA;&#x9;Compliance_AK INT,&#xA;&#x9;--ConditionCategory NVARCHAR(50),&#xA;&#x9;OverallComplianceRating DECIMAL(18, 0),&#xA;&#x9;AverageAge DECIMAL(18, 0),&#xA;&#x9;--AgeDocuments NVARCHAR(20),&#xA;&#x9;PercentFemale DECIMAL(9,6)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimFactory&#xA;&#x9;(Factory_SK INT IDENTITY(1, 1) CONSTRAINT pk_Factory_SK PRIMARY KEY,&#xA;&#x9;Factory_AK INT,&#xA;&#x9;Nation NVARCHAR(50),&#xA;&#x9;City NVARCHAR(30),&#xA;&#x9;GMTDifference DECIMAL(18, 0),&#xA;&#x9;MaxWorkers INT,&#xA;&#x9;BaseCurrency NVARCHAR(5)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimItem&#xA;&#x9;(Item_SK INT IDENTITY(1, 1) CONSTRAINT pk_Item_SK PRIMARY KEY,&#xA;&#x9;Item_AK NVARCHAR(60) NOT NULL,&#xA;&#x9;ModelDescription NVARCHAR(250) NOT NULL,&#xA;&#x9;BasePrice DECIMAL(9, 4),&#xA;&#x9;ListPrice DECIMAL(38,4),&#xA;&#x9;Color NVARCHAR(20),&#xA;&#x9;ItemSize DECIMAL(18, 0)&#xA;&#x9;);&#xA;&#xA;CREATE TABLE DimOrder&#xA;&#x9;(Order_SK INT IDENTITY(1, 1) CONSTRAINT pk_Order_SK PRIMARY KEY,&#xA;&#x9;Order_AK INT,&#xA;&#x9;DeliveryNation NVARCHAR(50),&#xA;&#x9;DeliveryState NVARCHAR(20),&#xA;&#x9;DeliveryCity NVARCHAR(30),&#xA;&#x9;PriceAdjustment DECIMAL(38, 4),&#xA;&#x9;Currency NVARCHAR(5)&#xA;&#x9;);&#xA;&#x9;&#xA;CREATE TABLE DimDate&#xA;&#x9;(&#x9;&#xA;&#x9;&#x9;Date_SK INT PRIMARY KEY, &#xA;&#x9;&#x9;Date DATE,&#xA;&#x9;&#x9;FullDate CHAR(10),-- Date in MM-dd-yyyy format&#xA;&#x9;&#x9;DayOfMonth INT, -- Field will hold day number of Month&#xA;&#x9;&#x9;DayName VARCHAR(9), -- Contains name of the day, Sunday, Monday &#xA;&#x9;&#x9;DayOfWeek INT,-- First Day Sunday=1 and Saturday=7&#xA;&#x9;&#x9;DayOfWeekInMonth INT, -- 1st Monday or 2nd Monday in Month&#xA;&#x9;&#x9;DayOfWeekInYear INT,&#xA;&#x9;&#x9;DayOfQuarter INT,&#xA;&#x9;&#x9;DayOfYear INT,&#xA;&#x9;&#x9;WeekOfMonth INT,-- Week Number of Month &#xA;&#x9;&#x9;WeekOfQuarter INT, -- Week Number of the Quarter&#xA;&#x9;&#x9;WeekOfYear INT,-- Week Number of the Year&#xA;&#x9;&#x9;Month INT, -- Number of the Month 1 to 12{}&#xA;&#x9;&#x9;MonthName VARCHAR(9),-- January, February etc&#xA;&#x9;&#x9;MonthOfQuarter INT,-- Month Number belongs to Quarter&#xA;&#x9;&#x9;Quarter CHAR(2),&#xA;&#x9;&#x9;QuarterName VARCHAR(9),-- First,Second..&#xA;&#x9;&#x9;Year INT,-- Year value of Date stored in Row&#xA;&#x9;&#x9;YearName CHAR(7), -- CY 2015,CY 2016&#xA;&#x9;&#x9;MonthYear CHAR(10), -- Jan-2016,Feb-2016&#xA;&#x9;&#x9;MMYYYY INT,&#xA;&#x9;&#x9;FirstDayOfMonth DATE,&#xA;&#x9;&#x9;LastDayOfMonth DATE,&#xA;&#x9;&#x9;FirstDayOfQuarter DATE,&#xA;&#x9;&#x9;LastDayOfQuarter DATE,&#xA;&#x9;&#x9;FirstDayOfYear DATE,&#xA;&#x9;&#x9;LastDayOfYear DATE,&#xA;&#x9;&#x9;IsHoliday BIT,-- Flag 1=National Holiday, 0-No National Holiday&#xA;&#x9;&#x9;IsWeekday BIT,-- 0=Week End ,1=Week Day&#xA;&#x9;&#x9;Holiday VARCHAR(50),--Name of Holiday in US&#xA;&#x9;&#x9;Season VARCHAR(10)--Name of Season&#xA;&#x9;);&#xA;&#xA;&#xA;CREATE TABLE FactBatch&#xA;&#x9;(QuantityProduced INT,&#xA;&#x9;QualityRating INT,&#xA;&#x9;EstimatedEndTime INT,&#xA;&#x9;ActualEndTime INT,&#xA;&#x9;ShippingDate INT,&#xA;&#x9;ProductionCost DECIMAL(38,4),&#xA;&#x9;ShippingCost INT,&#xA;&#x9;QuantityShipped INT,&#xA;&#x9;OrderQuantity INT,&#xA;&#x9;OrderSalePrice INT,&#xA;&#x9;Order_SK INT NOT NULL CONSTRAINT Fk_Order_SK FOREIGN KEY REFERENCES DimOrder(Order_SK),&#xA;&#x9;Compliance_SK INT CONSTRAINT FK_Compliance_SK FOREIGN KEY REFERENCES DimCompliance(Compliance_SK),&#xA;&#x9;Factory_SK INT CONSTRAINT FK_Factory_SK FOREIGN KEY REFERENCES DimFactory(Factory_SK),&#xA;&#x9;Item_SK INT CONSTRAINT FK_Item_SK FOREIGN KEY REFERENCES DimItem(Item_SK),&#xA;&#x9;Shipment_SK INT CONSTRAINT FK_Shipment_SK FOREIGN KEY REFERENCES DimShipment(Shipment_SK),&#xA;&#x9;StartDate INT CONSTRAINT FK_StartDate FOREIGN KEY REFERENCES DimDate(Date_SK),&#xA;&#x9;CONSTRAINT pk_FactBatch PRIMARY KEY (Order_SK, Factory_SK, Item_SK, Shipment_SK, StartDate)&#xA;&#x9;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2987,27 +2987,27 @@ ORDER BY Shipment_SK;</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="227,42"
+          Size="227.2,41.6"
           Id="Package\Load Dimension Tables\DimComplience Data Flow Task"
           TopLeft="54.25,84" />
         <NodeLayout
-          Size="167,42"
+          Size="167.2,41.6"
           Id="Package\Load Dimension Tables\DimDate SQL Task"
           TopLeft="84.25,377" />
         <NodeLayout
-          Size="208,42"
+          Size="208,41.6"
           Id="Package\Load Dimension Tables\DimFactory Data Flow Task"
           TopLeft="63.75,7" />
         <NodeLayout
-          Size="195,42"
+          Size="195.2,41.6"
           Id="Package\Load Dimension Tables\DimItem Data Flow Task"
           TopLeft="70.25,232.5" />
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\Load Dimension Tables\DimOrder Data Flow Task"
           TopLeft="67.75,306.5" />
         <NodeLayout
-          Size="218,42"
+          Size="217.6,41.6"
           Id="Package\Load Dimension Tables\DimShipment Data Flow Task"
           TopLeft="58.75,151" />
         <EdgeLayout
@@ -3133,30 +3133,30 @@ ORDER BY Shipment_SK;</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="330,445"
-          Size="330,488"
+          PanelSize="329.6,444.8"
+          Size="329.6,488"
           Id="Package\Load Dimension Tables"
           TopLeft="422.130952380952,40.765873015873" />
         <NodeLayout
-          Size="201,42"
+          Size="200.8,41.6"
           Id="Package\Load Fact Table\FactBatch Data Flow Task"
           TopLeft="21.8571428571429,15.8214285714286" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="248,88"
-          Size="248,133"
+          PanelSize="248,89.6"
+          Size="248,132.8"
           Id="Package\Load Fact Table"
           TopLeft="853.384920634921,218.265873015873" />
         <NodeLayout
-          Size="172,42"
+          Size="172,41.6"
           Id="Package\Prepare ETL Process\BroadclothDW Build"
           TopLeft="27,18" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="248,90"
-          Size="248,133"
+          PanelSize="248,89.6"
+          Size="248,132.8"
           Id="Package\Prepare ETL Process"
           TopLeft="77.2738095238095,218.265873015873" />
         <EdgeLayout
@@ -3214,15 +3214,15 @@ ORDER BY Shipment_SK;</property>
     design-time-name="Package\Load Dimension Tables\DimComplience Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Source"
-          TopLeft="253.25,132" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Destination"
           TopLeft="242.75,316" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Source"
+          TopLeft="253.25,132" />
         <EdgeLayout
           Id="Package\Load Dimension Tables\DimComplience Data Flow Task.Paths[OLE DB Source Output]"
           TopLeft="328.25,174">
@@ -3242,17 +3242,40 @@ ORDER BY Shipment_SK;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Dimension Tables\DimFactory Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension Tables\DimFactory Data Flow Task\OLE DB Source"
@@ -3280,23 +3303,46 @@ ORDER BY Shipment_SK;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimFactory Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimFactory Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Dimension Tables\DimItem Data Flow Task">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
+          Size="150.4,41.6"
           Id="Package\Load Dimension Tables\DimItem Data Flow Task\OLE DB Source"
           TopLeft="335.75,118" />
         <NodeLayout
-          Size="171,42"
+          Size="171.2,41.6"
           Id="Package\Load Dimension Tables\DimItem Data Flow Task\OLE DB Destination"
           TopLeft="325.25,322" />
         <EdgeLayout
@@ -3324,11 +3370,32 @@ ORDER BY Shipment_SK;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimItem Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimItem Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Dimension Tables\DimOrder Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension Tables\DimOrder Data Flow Task\OLE DB Source"
@@ -3356,17 +3423,40 @@ ORDER BY Shipment_SK;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimOrder Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimOrder Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Dimension Tables\DimShipment Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension Tables\DimShipment Data Flow Task\OLE DB Source"
@@ -3394,23 +3484,46 @@ ORDER BY Shipment_SK;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimShipment Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dimension Tables\DimShipment Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Fact Table\FactBatch Data Flow Task">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
+          Size="150.4,41.6"
           Id="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Source"
           TopLeft="381.25,159" />
         <NodeLayout
-          Size="171,42"
+          Size="171.2,41.6"
           Id="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination"
           TopLeft="370.75,338" />
         <EdgeLayout
@@ -3439,99 +3552,7 @@ ORDER BY Shipment_SK;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimFactory Data Flow Task\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimFactory Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimComplience Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimShipment Data Flow Task\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimShipment Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimItem Data Flow Task\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimItem Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimOrder Data Flow Task\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Dimension Tables\DimOrder Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3548,19 +3569,6 @@ ORDER BY Shipment_SK;</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Table\FactBatch Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
